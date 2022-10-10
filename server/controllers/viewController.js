@@ -1,22 +1,21 @@
 let homeView = (req, res) => {
-    res.render('home')
-}
+    res.render('home');
+};
 let aboutView = (req, res) => {
-    res.render('about')
-}
+    res.render('about');
+};
 let eventsView = (req, res) => {
-    res.render('events')
-}
+    res.render('events');
+};
 let mapsView = (req, res) => {
-    res.render('maps')
-}
+    res.render('maps');
+};
 let loginView = (req, res) => {
-    res.render('login')
-}
+    res.render('login');
+};
 let forumsView = (req, res) => {
-    res.render('forums')
-}
-
+    res.render('forums');
+};
 module.exports = {
     homeView: homeView,
     aboutView: aboutView,
@@ -24,4 +23,4 @@ module.exports = {
     mapsView: mapsView,
     loginView: loginView,
     forumsView: forumsView,
-}
+};

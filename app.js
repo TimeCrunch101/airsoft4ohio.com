@@ -1,9 +1,11 @@
 // List the Dependencies
-require('dotenv').config();
+if (process.env.DEV) {
+    require('dotenv').config();    
+};
 const express = require('express');
 const { engine } = require('express-handlebars');
 const path = require('path');
-const initWebRoutes = require('./server/router/router')
+const initWebRoutes = require('./server/router/router');
 
 // Create Express Server
 const app = express();
@@ -26,4 +28,4 @@ app.use(express.static(path.join(__dirname, '/public')));
 initWebRoutes(app);
 
 // Init Listen
-app.listen(PORT, () => console.log(`Server running http://127.0.0.1:${PORT}/`)); // This port is defined in the system ENV
+app.listen(PORT, () => console.log(`Server running http://127.0.0.1:${PORT}/`));
