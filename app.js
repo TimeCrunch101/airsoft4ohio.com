@@ -21,11 +21,14 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // Static Public Folder
-app.use(express.static(path.join(__dirname, "public")));
-app.use("/bs/css", express.static(path.join(__dirname, "node_modules/bootstrap/dist/css")));
-app.use('/bs/css', express.static(path.join(__dirname, "node_modules/bootstrap-icons")))
-app.use("/bs/js", express.static(path.join(__dirname, "node_modules/bootstrap/dist/js")));
-app.use("/bs/js", express.static(path.join(__dirname, "node_modules/jquery/dist")))
+app.use(express.static(path.join(__dirname, "./public")));
+app.use("/bs", express.static(path.join(__dirname, "./node_modules/bootstrap")));
+app.use('/bs-icons', express.static(path.join(__dirname, "./node_modules/bootstrap-icons")))
+// app.use("/js", express.static(path.join(__dirname, "./node_modules/bootstrap/dist/js")));
+app.use("/js", express.static(path.join(__dirname, "./node_modules/jquery/dist")))
+app.use("/quill", express.static(path.join(__dirname, "./node_modules/quill")))
+
+
 
 // Router Init
 initWebRoutes(app);

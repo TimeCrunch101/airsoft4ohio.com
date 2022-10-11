@@ -16,6 +16,9 @@ let loginView = (req, res) => {
 let forumsView = (req, res) => {
     res.render('forums');
 };
+let createPostView = (req, res) => {
+    res.render('createPost');
+};
 module.exports = {
     homeView: homeView,
     aboutView: aboutView,
@@ -23,4 +26,5 @@ module.exports = {
     mapsView: mapsView,
     loginView: loginView,
     forumsView: forumsView,
+    createPostView: createPostView,
 };
