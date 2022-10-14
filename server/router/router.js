@@ -9,6 +9,7 @@ const initWebRoutes = (app) => {
     router.get('/login', viewController.loginView);
     router.get('/forums', viewController.forumsView);
     router.get('/create/post', viewController.createPostView)
+    router.get('/fields', viewController.fieldsView)
     return app.use('/', router);
 };
 module.exports = router;
