@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkclient"]=self["webpackChunkclient"]||[]).push([[282],{4282:function(n,t,e){e.r(t),e.d(t,{default:function(){return a}});var r=e(3396);const u=(0,r._)("h1",null,"Error: Route Not Defined",-1);function c(n,t){const e=(0,r.up)("router-link");return(0,r.wg)(),(0,r.iD)(r.HY,null,[u,(0,r.Wm)(e,{to:"/"},{default:(0,r.w5)((()=>[(0,r.Uk)("Go Back")])),_:1})],64)}var o=e(89);const l={},i=(0,o.Z)(l,[["render",c]]);var a=i}}]);
+//# sourceMappingURL=282.3edd9639.js.map

@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkclient"]=self["webpackChunkclient"]||[]).push([[157],{8157:function(n,e,t){t.r(e),t.d(e,{default:function(){return d}});var a=t(3396);const r=(0,a._)("div",{class:"main-container"},[(0,a._)("h1",null,"Fields")],-1);function c(n,e,t,c,u,i){const o=(0,a.up)("NavBar"),s=(0,a.up)("PageFooter");return(0,a.wg)(),(0,a.iD)(a.HY,null,[(0,a.Wm)(o),r,(0,a.Wm)(s)],64)}var u=t(4491),i=t(7177),o={name:"FieldsView",components:{NavBar:u.Z,PageFooter:i.Z}},s=t(89);const l=(0,s.Z)(o,[["render",c]]);var d=l}}]);
+//# sourceMappingURL=157.a22f4911.js.map
