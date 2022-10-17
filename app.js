@@ -9,7 +9,7 @@ const initWebRoutes = require('./server/router/router');
 
 // Create Express Server
 const app = express();
-const PORT = 8080 || 5000;
+const PORT = 8000 || 5000;
 
 // Express Handlebars
 app.engine('.hbs', engine({extname: '.hbs'}));
