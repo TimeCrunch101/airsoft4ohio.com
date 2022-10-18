@@ -1,4 +1,7 @@
-## <center>[airsoft4ohio.com](https://airsoft4ohio.com')</center>
+
+## <p style="text-align: center;">[airsoft4ohio.com](https://airsoft4ohio.com')
+</p>
+
 #### <center>This is a website that allows the good folks of Ohio to gather and talk all things Airsoft.</center>
 
 #### <center>The goals of this site:</center>
