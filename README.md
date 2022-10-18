@@ -1,8 +1,8 @@
-## airsoft4ohio.com
+## <center>[airsoft4ohio.com](https://airsoft4ohio.com')</center>
+---
+#### <center>This is a website that allows the good folks of Ohio to gather and talk all things Airsoft.</center>
 
-#### This is a website that allows the good folks of Ohio to gather and talk all things Airsoft.
-
-#### Some things this site aims to do:
+#### <center>The goals of this site:</center>
 
 - Provide a forum for Airsofters in Ohio
 - Plan & Schedule Events
@@ -12,14 +12,14 @@
 - Hook into Discord, webhooks to post notifications about event's, also allow users to RSVP from Discord
 - Real time chat
 
-#### Main technologies this project uses:
+#### <center>Main technologies this project uses:</center>
 
 - [**Node JS**](https://nodejs.org/en/): Server side Runtime environment for JavaScript
 - [**Express**](https://expressjs.com/): Framework used to build out the API
 - [**Vue JS**](https://vuejs.org/): Frontend JavaScript Framework
 - [**MySQL**](https://www.mysql.com/): Backend Database
 
-#### Other Libraries / Frameworks:
+#### <center>Other Libraries / Frameworks:</center>
 
 - [**Bootstrap**](https://getbootstrap.com/): Easy to use CSS Framework
 - [**Quill JS**](https://quilljs.com/): Open source Plug N' Play Rich Text Editor
