@@ -35,7 +35,7 @@
 
 
         <li class="nav-item">
-          <a class="nav-link" href="/login">LOGIN <i class="bi bi-door-open-fill"></i></a>
+          <router-link class="nav-link" to="/login">LOGIN <i class="bi bi-door-open-fill"></i></router-link>
         </li>
       </ul>
     </div>
@@ -51,4 +51,12 @@ export default {
 }
 
 </script>
+
+<style>
+
+nav, .navbar, .navbar-expand-lg, .bg-light {
+  background-color: var(--forum-d-green);
+}
+
+</style>
 

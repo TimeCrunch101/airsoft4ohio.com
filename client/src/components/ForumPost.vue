@@ -1,41 +1,363 @@
 <template>
 
-    <div class="forum-post">
-        <img class="forum-img" src="../assets/face.png" alt="">
-        <div class="forum-body">
-            <div class="forum-text">
-                <h4>Some Post About Airsoft</h4>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem odit nobis illum. Vel, modi voluptatum dolores aut pariatur rerum! Voluptates nemo architecto praesentium veritatis quisquam atque sed ab, rerum excepturi?</p>
-            </div>
-            <div class="forum-footer">
-                <ul class="forum-footer-list">
-                    <li>like</li>
-                    <li>follow</li>
-                    <li>post</li>
-                    <li>view</li>
-                </ul>
-            </div>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-1">
+            <!-- LEFT BLANK -->
         </div>
-    </div>
-    <div class="forum-post">
-        <img class="forum-img" src="../assets/face.png" alt="">
-        <div class="forum-body">
-            <div class="forum-text">
-                <h4>Some Post About Airsoft</h4>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem odit nobis illum. Vel, modi voluptatum dolores aut pariatur rerum! Voluptates nemo architecto praesentium veritatis quisquam atque sed ab, rerum excepturi?</p>
-            </div>
-            <div class="forum-footer">
-                <ul class="forum-footer-list">
-                    <li>like</li>
-                    <li>follow</li>
-                    <li>post</li>
-                    <li>view</li>
-                </ul>
-            </div>
+        <div class="col max">
+            <p>Forum</p>
+        </div>
+        <div class="col-3">
+            <p>Last Post</p>
+        </div>
+        <div class="col-1">
+            <p>Threads</p>
+        </div>
+        <div class="col-1">
+            <p>Posts</p>
         </div>
     </div>
 
+
+
+    <div class="row">
+        <div class="col row-header">
+            <h5>Info Section</h5>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>Introductions</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>Newbie FAQ</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>General Forum Rules and Guidelines</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col row-header">
+            <h5>Main</h5>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>General Discussion</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>General Discussion</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>General Discussion</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>General Discussion</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>General Discussion</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>General Discussion</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col row-header">
+            <h5>Weapons and Gear</h5>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>Electric Guns (AEG)</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>Electric Guns (AEG)</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>Electric Guns (AEG)</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>Electric Guns (AEG)</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col row-header">
+            <h5>Events</h5>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>Upcoming Airsoft Events</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <i class="bi bi-file-earmark-break fs-1"></i>
+        </div>
+        <div class="col max">
+            <p>Upcoming Airsoft Events</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, voluptate.</p>
+        </div>
+        <div class="col-3">
+            <p>Oscar</p>
+        </div>
+        <div class="col-1">
+            <p>1,440</p>
+        </div>
+        <div class="col-1">
+            <p>9,733</p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col row-header">
+            <h5>Past Events Discussion</h5>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
 </template>
+
+
+
+
+
+
+
+
+
 <script>
 
 export default {
@@ -43,52 +365,39 @@ export default {
 }
 
 </script>
+
+
+
+
+
+
+
+
+
 <style scoped>
 
-.forum-post {
-    width: 75%;
-    height: 8em;
-    border: 2px solid hsl(183, 68%, 11%);
-    border-radius: 0.5em;
-    margin-bottom: 2em;
-    display: flex;
-}
-
-.forum-body {
-    max-width: 100%;
-    margin-left: 1em;
-    
-}
-
-.forum-img-wrapper {
-    border: 1px solid pink;
-}
 
 
-.forum-img {
-    
-    width: 7em;
-    height: 7em;
-    border: 1px solid purple;
-    border-radius: 50%;
-    /* float: left; */
 
-}
-
-.forum-footer-list{
-    display: flex;
-    list-style: none;
-    gap: 0.5em;
+p, h1, h2, h3, h4, h5, h6, h7, h8 {
     margin: 0;
-    padding: 0;
+    color: black;
 }
-
-.forum-footer-list>li {
-    color: aquamarine;
+.row {
+    height: fit-content;
+    background-color: var(--forum-l-green);
 }
-
-.forum-footer-list>li:hover {
-    cursor: pointer;
+.container {
+    /* background-color: rgb(240, 248, 255); */
+    width: 55%;
+    min-width: 1000px;
+    
 }
-
+.col-1, .col-3, .col, max {
+    border: 1px solid black;
+}
+.row-header {
+    height: 3em;
+    background-color: var(--forum-d-green);
+}
 </style>

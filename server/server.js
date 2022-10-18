@@ -1,3 +1,4 @@
+// Require Dotenv only in Development
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
@@ -7,18 +8,18 @@ const initAPIrouter = require('./router/router')
 const app = express();
 // Middleware
 app.use(bodyParser.json());
-// INIT Router
+// INIT API Router
 initAPIrouter(app)
-// Handle Prod
+// Production Environment 
 if (process.env.NODE_ENV === 'production') {
-    // Static Folder
+    // Serve Public Static Folder
     app.use(express.static(__dirname + '/public'))
-    // Handle SPA
+    // Handle SPA Routes
     app.get(/.*/, (req, res) => {
         res.sendFile(__dirname + '/public/index.html')
     })
 }
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`API running on ${port}`)
 })

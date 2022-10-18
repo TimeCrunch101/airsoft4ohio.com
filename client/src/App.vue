@@ -20,6 +20,11 @@ export default {
 
 <style>
 
+:root {
+  --forum-d-green: hsl(117, 14%, 31%); 
+  --forum-l-green: hsl(116, 7%, 45%);
+}
+
 html, body {
     background-image: url(../src/assets/soldier.jpg);
     background-size: cover;

@@ -1,0 +1,13 @@
+p, h1, h2, h3, h4, h5, h6, h7, h8 {
+    margin: 0;
+}
+
+.row {
+    height: fit-content;
+}
+.container {
+    min-width: 1000px;
+}
+.col-1, .col-3, .col, max {
+    border: 1px solid black
+}

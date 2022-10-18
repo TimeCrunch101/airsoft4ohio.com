@@ -1,16 +1,16 @@
 <template>
 <NavBar/>
-<div class="main-container">
-        <div class="forum-post-wrapper">
+<!-- <div class="main-container"> -->
+        <!-- <div class="forum-post-wrapper"> -->
             <ForumPost/>
-        </div>
-</div>
-<PageFooter/>
+        <!-- </div> -->
+<!-- </div> -->
+<!-- <PageFooter/> -->
 
 </template>
 <script>
 import NavBar from "@/components/NavBar.vue"
-import PageFooter from "@/components/PageFooter.vue"
+// import PageFooter from "@/components/PageFooter.vue"
 import ForumPost from '../components/ForumPost.vue'
 
 export default {
@@ -18,7 +18,7 @@ export default {
     components: {
         ForumPost,
         NavBar,
-        PageFooter
+        // PageFooter
     }
 }
 
