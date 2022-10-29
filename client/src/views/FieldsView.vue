@@ -5,16 +5,7 @@
     </div>
 <PageFooter/>
 </template>
-<script>
+<script setup>
 import NavBar from "@/components/NavBar.vue"
 import PageFooter from "@/components/PageFooter.vue"
-export default {
-    name: 'FieldsView',
-    components: {
-        NavBar,
-        PageFooter
-    }
-}
 </script>
-<style>
-</style>

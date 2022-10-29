@@ -44,19 +44,3 @@
 
 </template>
 
-<script>
-
-export default {
-  name: 'NavBar',
-}
-
-</script>
-
-<style>
-
-nav, .navbar, .navbar-expand-lg, .bg-light {
-  background-color: var(--forum-d-green);
-}
-
-</style>
-

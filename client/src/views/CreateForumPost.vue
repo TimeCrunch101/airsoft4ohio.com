@@ -10,26 +10,18 @@
     </div>
 <PageFooter/>
 </template>
-<script>
+<script setup>
 import NavBar from "@/components/NavBar.vue"
 import PageFooter from "@/components/PageFooter.vue"
-
 import Quill from "quill/dist/quill.js"
+import { onMounted } from "vue";
 
+onMounted(() => {
+    new Quill("#editor", {
+        theme: 'snow'
+    })
+})
 
-export default {
-    name: 'CreateForumPost',
-    components: {
-        NavBar,
-        PageFooter
-    },
-    mounted() {
-        // eslint-disable-next-line no-unused-vars
-        var quill = new Quill("#editor", {
-          theme: 'snow'
-        });
-    }
-}
 </script>
 <style>
 

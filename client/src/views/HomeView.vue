@@ -10,18 +10,11 @@
     <PageFooter/>
 </template>
 
-<script>
+<script setup>
 import PageFooter from "../components/PageFooter.vue"
 import ToastCom from "@/components/ToastCom.vue"
 import NavBar from "@/components/NavBar.vue"
-export default {
-    name: 'HomeView',
-    components: {
-        ToastCom,
-        PageFooter,
-        NavBar,
-    }
-}
+
 </script>
 
 <style scoped>
