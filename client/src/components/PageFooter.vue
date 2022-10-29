@@ -6,19 +6,9 @@
 
 </template>
 
-<script>
-
-export default {
-    name: 'PageFooter'
-}
-
-</script>
-
 <style scoped>
 
 footer {
-    /* position: fixed;
-    bottom: 0; */
     width: 100%;
     height: 5em;
     background-color: hsla(0, 0%, 0%, 0.548);

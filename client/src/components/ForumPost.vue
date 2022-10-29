@@ -337,47 +337,14 @@
             <h5>Past Events Discussion</h5>
         </div>
     </div>
-
-
-
-
 </div>
-
-
-
-
-
-
 </template>
 
-
-
-
-
-
-
-
-
-<script>
-
-export default {
-    name: 'ForumPost'
-}
+<script setup>
 
 </script>
 
-
-
-
-
-
-
-
-
 <style scoped>
-
-
-
 
 p, h1, h2, h3, h4, h5, h6, h7, h8 {
     margin: 0;

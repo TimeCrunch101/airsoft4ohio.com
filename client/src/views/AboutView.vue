@@ -35,17 +35,9 @@
     <PageFooter/>
 </template>
 
-<script>
+<script setup>
 import NavBar from "@/components/NavBar.vue"
 import PageFooter from "@/components/PageFooter.vue"
-
-export default {
-    name: 'AboutView',
-    components: {
-        NavBar,
-        PageFooter
-    }
-}
 
 </script>
 
