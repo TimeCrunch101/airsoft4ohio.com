@@ -1,10 +1,10 @@
 const express = require('express');
-const apiController = require('../utils/controllers/apiController')
+const getController = require("../controllers/getController")
 const router = express.Router();
 
 const initAPIroutes = (app) => {
-    router.get('/api/', apiController.get)
-    router.get('/api/*', apiController.notFound)
+    router.get('/api/', getController.get)
+    router.get('/api/*', getController.notFound)
 
     return app.use('/', router)
 }

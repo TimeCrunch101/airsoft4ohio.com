@@ -1,0 +1,1 @@
+import{o as s,c as t,a as e,F as o,e as a,N as r,P as c}from"./index.b43ddf8d.js";const n=a("div",{class:"main-container"},[a("h1",null,"Fields")],-1),m={__name:"FieldsView",setup(l){return(_,i)=>(s(),t(o,null,[e(r),n,e(c)],64))}};export{m as default};

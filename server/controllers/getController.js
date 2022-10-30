@@ -1,7 +1,9 @@
 const mysql = require('mysql2')
 
 exports.get = (req, res) => {
-    res.sendStatus(200)
+    res.json({
+        message: 'API good to go'
+    })
 }
 exports.notFound = (req, res) => {
     res.sendStatus(404)

@@ -1,0 +1,1 @@
+import{_ as o,r as t,o as n,c as a,a as r,w as c,F as s,e as _,f as l}from"./index.b43ddf8d.js";const i={},d=_("h1",null,"Login View",-1);function f(u,m){const e=t("router-link");return n(),a(s,null,[d,r(e,{to:"/"},{default:c(()=>[l("Go Back")]),_:1})],64)}const k=o(i,[["render",f]]);export{k as default};
