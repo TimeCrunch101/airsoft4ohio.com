@@ -23,7 +23,7 @@ const checkPassword = (formPassword, formUsername) => {
         try {
             pool.query("SELECT * FROM dbt_users WHERE username =?", [formUsername], (err, data) => {
                 if (err) throw err;
-                const DBpassword = data[0]?.password
+                const DBpassword = data[0].password
                 if (DBpassword !== undefined) {
                     bcrypt.compare(formPassword, DBpassword).then((isMatch) => {
                         if (isMatch) {
