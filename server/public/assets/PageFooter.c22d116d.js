@@ -1,0 +1,1 @@
+import{_ as o}from"./_plugin-vue_export-helper.cdc0426e.js";import{o as t,c as _,p as c,e as s,a as d}from"./index.70c5934b.js";const a={},r=e=>(c("data-v-bfdf8dde"),e=e(),s(),e),n=r(()=>d("h1",null,"Footer",-1)),p=[n];function f(e,l){return t(),_("footer",null,p)}const h=o(a,[["render",f],["__scopeId","data-v-bfdf8dde"]]);export{h as P};
