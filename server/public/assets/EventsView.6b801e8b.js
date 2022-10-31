@@ -1,1 +1,0 @@
-import{o as s,c as t,a as e,F as n,e as a,N as o,P as r}from"./index.b43ddf8d.js";const c=a("div",{class:"main-container"},[a("h1",null,"Events")],-1),p={__name:"EventsView",setup(_){return(l,i)=>(s(),t(n,null,[e(o),c,e(r)],64))}};export{p as default};

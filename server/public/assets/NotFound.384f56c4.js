@@ -1,1 +1,0 @@
-import{_ as o,r as t,o as r,c as n,a,w as c,F as s,e as _,f as l}from"./index.b43ddf8d.js";const d={},u=_("h1",null,"Error: Route Not Defined",-1);function f(i,m){const e=t("router-link");return r(),n(s,null,[u,a(e,{to:"/"},{default:c(()=>[l("Go Back")]),_:1})],64)}const k=o(d,[["render",f]]);export{k as default};

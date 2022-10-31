@@ -36,7 +36,7 @@ const validation = computed(() => {
 
 const register = async () => {
     if (!err.value) {
-        await axios.post('http://localhost:5050/api/create/user', {
+        await axios.post('https://airsoft4ohio.com:5050/api/create/user', {
             username: form.value.username,
             email: form.value.email,
             password: form.value.password
