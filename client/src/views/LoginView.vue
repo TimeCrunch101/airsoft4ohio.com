@@ -12,7 +12,7 @@ const form = ref({
 })
 
 const login = async () => {
-    await axios.post('http://airsoft4ohio.com:5050/api/login', {
+    await axios.post('https://airsoft4ohio.com/api/login', {
         username: form.value.username,
         password: form.value.password
     }).then((res) => {

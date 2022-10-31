@@ -1,0 +1,1 @@
+import{_ as t}from"./NavBar.ea9b8ff7.js";import{P as o}from"./PageFooter.41ab17c8.js";import{o as s,c as r,d as e,F as n,a}from"./index.4d70681c.js";import"./_plugin-vue_export-helper.cdc0426e.js";const c=a("div",{class:"main-container"},[a("h1",null,"Events")],-1),u={__name:"EventsView",setup(m){return(_,i)=>(s(),r(n,null,[e(t),c,e(o)],64))}};export{u as default};

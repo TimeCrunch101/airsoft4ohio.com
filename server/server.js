@@ -30,8 +30,8 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 // Start Socket Server
-const {startSocketServer} = require('./controllers/socketController')
-startSocketServer()
+// const {startSocketServer} = require('./controllers/socketController')
+// startSocketServer()
 // Start Express API
 app.listen(port, () => {
     console.log(`Express API on ${process.env.SERVER}:${port}/api`)
