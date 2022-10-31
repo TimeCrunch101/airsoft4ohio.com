@@ -2,16 +2,25 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
     console.log('Running Dev Build')
 }
-const port = process.env.EXPRESS_PORT || 5000;
 const express = require('express');
+const cors = require('cors')
 const app = express();
-// ROUTERS
 const initGetRouter = require('./routers/getRouter')
+const initPostRouter = require('./routers/postRouter')
+const port = process.env.EXPRESS_PORT || 5000;
+const corsConfig = {
+    credentials: true,
+    origin: true,
+}
+// ROUTERS
+
 // Middleware
+app.use(cors(corsConfig))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 // INIT ROUTERS
 initGetRouter(app)
+initPostRouter(app)
 // Production Environment 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(__dirname + '/public'))

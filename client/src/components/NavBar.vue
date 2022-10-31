@@ -28,14 +28,18 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">FORUMS <i class="bi bi-info-circle-fill"></i></a>
           <ul class="dropdown-menu">
             <li><router-link class="dropdown-item" to="/forums">View <i class="bi bi-eye-fill"></i></router-link></li>
-            <li><router-link class="dropdown-item" to="/create/post">Create Post <i class="bi bi-postcard"></i></router-link></li>
+            <li v-if="useAuthStore().isAuthenticated"><router-link class="dropdown-item" to="/create/post">Create Post <i class="bi bi-postcard"></i></router-link></li>
           </ul>
         </li>
 
 
 
         <li class="nav-item">
-          <router-link class="nav-link" to="/login">LOGIN <i class="bi bi-door-open-fill"></i></router-link>
+          <router-link v-if="!useAuthStore().isAuthenticated" class="nav-link" to="/login">LOGIN <i class="bi bi-door-open-fill"></i></router-link>
+        </li>
+        <li class="nav-item">
+          <router-link v-if="useAuthStore().isAuthenticated" class="nav-link" to="/logout">LOGOUT <i class="bi bi-door-open-fill"></i></router-link>
+          <!-- LOGOUT <i class="bi bi-door-open-fill"></i> -->
         </li>
       </ul>
     </div>
@@ -44,3 +48,7 @@
 
 </template>
 
+<script setup>
+import { useAuthStore } from '../stores/auth';
+
+</script>
