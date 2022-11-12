@@ -1,20 +1,20 @@
 <template>
 <NavBar/>
-    <div class="main-container">
-        <h1>Create Post</h1>
-        <div id="editor">
-            <p>Hello World!</p>
-            <p>Some initial <strong>bold</strong> text</p>
-            <p><br></p>
-        </div>
+    
+    <div class="fourm-container">
+        <form @onsubmit.prevent="handleForm">            
+            <input type="text" name="title" id="title" v-model="form.title" placeholder="Title">
+            <!-- main body -->
+            <div id="editor">
+                <h1>Body</h1>
+            </div>
+        </form>
     </div>
-<PageFooter/>
 </template>
 <script setup>
 import NavBar from "@/components/NavBar.vue"
-import PageFooter from "@/components/PageFooter.vue"
 import Quill from "quill/dist/quill.js"
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 onMounted(() => {
     new Quill("#editor", {
@@ -22,7 +22,27 @@ onMounted(() => {
     })
 })
 
+const form = ref({
+    title: '',
+    body: ''
+})
+
+const handleForm = () => {
+
+}
+
 </script>
-<style>
+<style scoped>
+
+.fourm-container {
+    width: 700px;
+    margin: 5em auto;
+    background-color: hsla(0, 0%, 70%, 0.623);
+}
+
+#title {
+    width: 100%;
+    margin: 1em 0em;
+}
 
 </style>
