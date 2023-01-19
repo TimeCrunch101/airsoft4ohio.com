@@ -34,5 +34,5 @@ if (process.env.NODE_ENV === 'production') {
 // startSocketServer()
 // Start Express API
 app.listen(port, () => {
-    console.log(`Express API on ${process.env.SERVER}:${port}/api`)
+    console.log(`API: ${process.env.SERVER}:${port}/api`)
 })
