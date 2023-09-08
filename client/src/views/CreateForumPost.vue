@@ -1,48 +1,37 @@
-<template>
-<NavBar/>
-    
-    <div class="fourm-container">
-        <form @onsubmit.prevent="handleForm">            
-            <input type="text" name="title" id="title" v-model="form.title" placeholder="Title">
-            <!-- main body -->
-            <div id="editor">
-                <h1>Body</h1>
-            </div>
-        </form>
-    </div>
-</template>
 <script setup>
-import NavBar from "@/components/NavBar.vue"
-import Quill from "quill/dist/quill.js"
-import { onMounted, ref } from "vue";
+import NavBar from "../components/NavBar.vue"
+import {ref} from 'vue'
 
-onMounted(() => {
-    new Quill("#editor", {
-        theme: 'snow'
-    })
-})
+const value = ref(`
+# This is a test
+this is another test 'test'
+`)
 
-const form = ref({
-    title: '',
-    body: ''
-})
+const clicked = () => {
+    console.log(value.value)
+}
 
-const handleForm = () => {
-
+const HTMLcode = (e) => {
+    console.log(e)
 }
 
 </script>
+
+
+<template>
+    <NavBar/>
+    <div class="container">
+        <div class="mt-5">
+            <mavon-editor @change="HTMLcode($event)" language="en" v-model="value" :html="true" :editable="false"/>
+        </div>
+        <button @click="clicked()" type="button" class="btn btn-sm btn-primary">Test</button>
+    </div>
+    <div class="testing" v-if="value !== null">
+        {{ value }}
+    </div>
+</template>
 <style scoped>
-
-.fourm-container {
-    width: 700px;
-    margin: 5em auto;
-    background-color: hsla(0, 0%, 70%, 0.623);
+.testing {
+    color: white;
 }
-
-#title {
-    width: 100%;
-    margin: 1em 0em;
-}
-
 </style>

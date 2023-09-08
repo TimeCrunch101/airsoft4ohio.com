@@ -22,7 +22,7 @@
   "homepage": "https://github.com/TimeCrunch101/airsoft4ohio.com#readme",
   "devDependencies": {
     "dotenv": "^16.0.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^3.0.1"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -30,7 +30,7 @@
     "cors": "^2.8.5",
     "deep-email-validator": "^0.1.21",
     "express": "^4.18.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^2.3.3",
     "socket.io": "^4.5.3",
     "uuid": "^9.0.0"

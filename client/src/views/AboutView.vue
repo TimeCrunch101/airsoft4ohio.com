@@ -26,7 +26,7 @@
             <p>Other Libraries / Frameworks:</p>
             <ul>
                 <li><a target="_blank" href="https://getbootstrap.com/">Bootstrap</a>: Easy to use CSS Framework</li>
-                <li><a target="_blank" href="https://quilljs.com/">Quill JS</a>: Open source Plug N' Play Rich Text Editor</li>
+                
                 <li><a target="_blank" href="https://www.passportjs.org/">Passport JS</a>: Authentication Middleware</li>
                 <li><a target="_blank" href="https://socket.io/">Socket IO</a>: Enables bi-directional client/server communication for real time updates/notifications (WebSockets)</li>
             </ul>

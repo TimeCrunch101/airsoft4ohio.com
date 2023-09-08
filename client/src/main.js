@@ -2,14 +2,8 @@
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/js/bootstrap.js"
-// Quill CSS
-import "quill/dist/quill.core.css"
-import "quill/dist/quill.bubble.css"
-import "quill/dist/quill.snow.css"
-// Quill JS
-import "quill/dist/quill.core.js"
-import "quill/dist/quill.js"
-import "quill/dist/quill.min.js"
+import editor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -21,9 +15,13 @@ const pinia = createPinia()
 // Custom CSS
 import './assets/main.css'
 
+
+
+
 pinia.use(piniaPluginPersistedstate)
 const app = createApp(App)
 
+app.use(editor)
 app.use(pinia)
 app.use(router)
 
