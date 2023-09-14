@@ -46,5 +46,4 @@ AIRSOFT4OHIO
 #### <center>Other Libraries / Frameworks:</center>
 
 - [**Bootstrap**](https://getbootstrap.com/): Easy to use CSS Framework
-- [**Passport JS**](https://www.passportjs.org/): Authentication Middleware
 - [**Socket IO**](https://socket.io/): Enables bi-directional client/server communication for real time updates/notifications (WebSockets)
