@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== "production") require("dotenv").config()
-const {DB} = require('../../configs/DB')
+const DB = require('../dbController')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { msgQueue } = require('../emailController')
@@ -28,21 +28,30 @@ exports.isNotAuthenticated = (req, res, next) => {
 
 
 exports.register = async (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
-    const hash = bcrypt.hashSync(password, 10);
-    const fullname = `${firstname} ${lastname}`;
-    const userID = uuidv4();
     try {
-        await DB.register({userID, firstname, lastname, fullname, email, hash});
-        res.status(200).json({
-            message: "You Registered Successfully",
-        });
+        const { username, email, password } = req.body;
+        const exists = await DB.verifyUserNotExists(email, username)
+        console.log("Exists: ",exists)
+        if (!exists) {
+            const hash = bcrypt.hashSync(password, 10);
+            const userID = uuidv4();
+            await DB.registerUser({userID, username, email, hash});
+            res.status(200).json({
+                success: true,
+            });
+        } else {
+            res.status(400).json({
+                error: "Email or username already exists"
+            })
+        }
     } catch (error) {
         res.status(400).json({
             error: error.message,
             cause: error.cause
         })
     }
+
+
 };
 
 exports.login = async (req, res) => {
@@ -122,6 +131,6 @@ exports.resetPassword = async (req, res) => {
 
 exports.validate = (req, res) => {
     res.status(200).json({
-      validation: true,
+      success: true,
     });
   };

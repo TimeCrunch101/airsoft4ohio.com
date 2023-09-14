@@ -1,56 +1,65 @@
 <script setup>
 import axios from 'axios'
-import { ref, computed } from 'vue';
+import { ref, computed, reactive } from 'vue';
 import { useRouter } from "vue-router"
+
 const router = useRouter()
 
-
 const form = ref({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    username: null,
+    email: null,
+    password: null,
+    confirmPassword: null,
 })
-const err = ref(false)
-const valMessage = ref(false)
+const errorMessage = ref(null)
+const set = reactive({
+    errorMessage
+})
 
-const showErr = computed(() => {
-    if (form.value.password !== form.value.confirmPassword) {
-        err.value = "Passwords don't match..."
-        return true
-    } else {
-        if (form.value.password.length < 8 && form.value.password.length !== 0) {
-            err.value = 'Please user a longer password'
+
+const validatePassword = computed(() => {
+    if (form.value.password !== null) {
+        if (form.value.password !== form.value.confirmPassword) {
+            errorMessage.value = "Passwords do not match"
             return true
+        } else {
+            if (form.value.password.length < 8) {
+                errorMessage.value = "Passwords must be at least 8"
+                return true
+            }
         }
-        err.value = false
+        set.errorMessage = false
         return false
     }
 })
 
-const validation = computed(() => {
-    if (valMessage.value) {
-        return true
-    }
-})
-
-const register = async () => {
-    if (!err.value) {
-        await axios.post('https://airsoft4ohio.com/api/create/user', {
+const register = () => {
+    if (!errorMessage.value) {
+        axios.put("/api/register",{
             username: form.value.username,
             email: form.value.email,
-            password: form.value.password
+            password: form.value.password,
         }).then((res) => {
-            if (!res.data.success) valMessage.value = res.data.message
-            if (res.data.success) router.push('/login')
+            if (res.data.success) {
+                router.push("/login")
+            }
         }).catch((err) => {
-            console.error(err)
+            console.error(`
+            ${err.response.data.error}
+            ${err.response.data.cause}
+            `)
+            alert(`
+            ${err.response.data.error}
+            ${err.response.data.cause}
+            `)
         })
     } else {
-        console.log("Could not submit")
+        alert("Fix your errors first")
     }
-
 }
+
+
+
 
 
 
@@ -64,13 +73,8 @@ const register = async () => {
 
 
 <div class="container">
+    <p><router-link to="/login">Login</router-link></p>
     <div class="row">
-        <div class="col">
-            <div id="testing">
-                Register to post in the Forums
-            </div>
-            <p><router-link to="/login">Login</router-link></p>
-        </div>
         <div class="col">
             <form @submit.prevent="register">
                 <div class="mb-3">
@@ -89,15 +93,11 @@ const register = async () => {
                 <div class="mb-3">
                     <label for="confirmPassword" class="form-label">Confirm Password</label>
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" v-model="form.confirmPassword">
-                    <p class="text-danger" v-if="showErr">{{err}}</p>
+                    <p class="text-danger" v-if="validatePassword">{{errorMessage}}</p>
                 </div>
                 <button type="submit" class="btn btn-primary">Register</button>
-                <p class="text-danger" v-if="validation">{{valMessage}}</p>
+                <!-- <p class="text-danger" v-if="validation">{{valMessage}}</p> -->
             </form>
-            <div class="other-logins">
-                <i class="bi bi-google"></i>
-                <i class="bi bi-facebook"></i>
-            </div>
         </div>
     </div>
 </div>
@@ -120,41 +120,5 @@ const register = async () => {
 
 
 <style scoped>
-#testing {
-    height: 100%;
-    text-align: center;
-}
-a {
-    text-decoration: none;
-    color: black;
-}
 
-.container {   
-    border-radius: 1em;
-    margin-top: 10em;
-    width: 900px;
-    box-shadow: 0px 0px 5px white;
-}
-
-
-.col {
-    background-color: whitesmoke;
-}
-.col:first-child {
-    position: relative;
-    border-right: 1px solid black;
-    border-radius: 1em 0em 0em 1em; /* Top Left | Top Right | Bottom Right | Bottom Left */
-}
-
-.col:first-child>p:last-child {
-    position: absolute;
-    margin-bottom: 0;
-    bottom: 5px;
-    left: 5px;
-    
-}
-.col:last-child {
-    padding-top: 1em;
-    border-radius: 0em 1em 1em 0em;
-}
 </style>

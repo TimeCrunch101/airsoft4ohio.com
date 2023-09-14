@@ -44,12 +44,12 @@ export const useAuthStore = defineStore("auth", {
     validate() {
       return new Promise((resolve, reject) => {
         if (!this.token) return resolve(false)
-        axios.get("/api/validate", {
+        axios.post("/api/validate",{}, {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
           }).then((res) => {
-            if (res.data.validation) resolve(true)
+            if (res.data.success) return resolve(true)
           }).catch((err) => {
             console.error(err.response.data)
             this.fullName = null
