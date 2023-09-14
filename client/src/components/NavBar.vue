@@ -19,8 +19,9 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/fields">FIELDS <i class="bi bi-grid-3x3-gap-fill"></i></router-link>
         </li>
-
-
+        <li class="nav-item">
+          <router-link class="nav-link" to="/privacy">PRIVACY POLICY</router-link>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">FORUMS <i class="bi bi-info-circle-fill"></i></a>
           <ul class="dropdown-menu">
