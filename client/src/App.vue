@@ -1,13 +1,12 @@
 
-<template>
-  <RouterView />
-</template>
 <script setup>
-// import "./socketServer/client"
-import {useAuthStore} from "./stores/auth.js"
-const auth = useAuthStore()
+import NavBar from "./components/NavBar.vue"
 
 </script>
+<template>
+  <NavBar/>
+  <RouterView />
+</template>
 
 <style scoped>
 

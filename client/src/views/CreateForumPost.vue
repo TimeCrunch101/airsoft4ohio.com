@@ -1,5 +1,4 @@
 <script setup>
-import NavBar from "../components/NavBar.vue"
 import {ref} from 'vue'
 
 const value = ref(`
@@ -19,7 +18,7 @@ const HTMLcode = (e) => {
 
 
 <template>
-    <NavBar/>
+
     <div class="container">
         <div class="mt-5">
             <mavon-editor @change="HTMLcode($event)" language="en" v-model="value" :html="true" :editable="false"/>

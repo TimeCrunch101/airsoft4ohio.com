@@ -1,5 +1,5 @@
 <template>
-    <NavBar/>
+    
     <div class="main-container">
         <div>
             <h1>WORK IN PROGRESS</h1>
@@ -7,13 +7,10 @@
         </div>
         <ToastCom/>
     </div>
-    <PageFooter/>
 </template>
 
 <script setup>
-import PageFooter from "../components/PageFooter.vue"
 import ToastCom from "@/components/ToastCom.vue"
-import NavBar from "@/components/NavBar.vue"
 
 </script>
 

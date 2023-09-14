@@ -1,5 +1,4 @@
 <template>
-    <NavBar/>
     <div class="main-container">
         <h1>About</h1>
         <div>
@@ -32,12 +31,10 @@
             </ul>
         </div>
     </div>
-    <PageFooter/>
 </template>
 
 <script setup>
-import NavBar from "@/components/NavBar.vue"
-import PageFooter from "@/components/PageFooter.vue"
+
 
 </script>
 

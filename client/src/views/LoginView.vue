@@ -49,10 +49,6 @@ const login = async () => {
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" v-model="form.password">
                 </div>
-                <!-- <div class="mb-3 form-check"> -->
-                    <!-- <input type="checkbox" class="form-check-input" id="remember_me"> -->
-                    <!-- <label class="form-check-label" for="remember_me">Remember Me</label> -->
-                <!-- </div> -->
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
             <div class="other-logins">

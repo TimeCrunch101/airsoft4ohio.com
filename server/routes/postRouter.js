@@ -3,8 +3,7 @@ const postController = require("../controllers/postController")
 const postRouter = express.Router();
 
 const initPostRouter = (app) => {
-    postRouter.post('/api/create/user', postController.createUser)
-    postRouter.post('/api/login', postController.login)
+    postRouter.post('/api/test', postController.test)
 
     return app.use('/', postRouter)
 }
