@@ -4,6 +4,7 @@ const express = require('express')
 const rateLimit = require('express-rate-limit');
 const cors = require('cors')
 const app = express()
+app.set("trust-proxy", 2)
 const initGetRouter = require('./routes/getRouter')
 const initPostRouter = require('./routes/postRouter')
 
