@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npx stop 0
+    - run: npx pm2 stop 0
     - run: npm ci
     - run: cd client && npm ci && npm run build && cd ..
-    - run: npx start 0
+    - run: npx pm2 start 0
