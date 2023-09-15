@@ -5,7 +5,7 @@ let io;
 if (process.env.NODE_ENV === "production") {
     io = new Server({
         cors: {
-            origin: "https://airsoft4ohio.com"
+            origin: "https://a4o.cincitechlabs.com"
         }
     })
 } else {
