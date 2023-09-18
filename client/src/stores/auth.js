@@ -3,10 +3,10 @@ import axios from "axios";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    fullName: null,
+    username: null,
+    email: null,
     token: null,
     sasToken: null,
-    secondFactor: false
   }),
   getters: {
     isAuthenticated: (store) => {
@@ -16,30 +16,28 @@ export const useAuthStore = defineStore("auth", {
     getToken: (store) => {
       return store.token;
     },
+    getEmail: (store) => {
+      return store.email;
+    },
     getUser: (store) => {
-      return store.fullName
+      return store.username
     },
     getSasToken: (store) => {
       return store.sasToken
-    },
-    getSecondFactor: (store) => {
-      return store.secondFactor
-    },
+    }
   },
   actions: {
-    setUserInfo(fullName, token, sasToken, secondFactor) {
-      this.fullName = fullName
+    setUserInfo(username, email, token, sasToken) {
+      this.username = username
+      this.email = email
       this.token = token
       this.sasToken = sasToken
-      if (secondFactor) {
-        this.secondFactor = secondFactor
-      }
     },
     logoutUser() {     
-      this.fullName = null
+      this.username = null
+      this.email = null
       this.token = null
       this.sasToken = null
-      this.secondFactor = null
     },
     validate() {
       return new Promise((resolve, reject) => {
@@ -52,10 +50,10 @@ export const useAuthStore = defineStore("auth", {
             if (res.data.success) return resolve(true)
           }).catch((err) => {
             console.error(err.response.data)
-            this.fullName = null
+            this.username = null
+            this.email = null
             this.token = null
             this.sasToken = null
-            this.secondFactor = null
             resolve(false)
           });
       })
