@@ -8,9 +8,9 @@ const initPostRouter = (app) => {
     postRouter.post('/api/login', auth.isNotAuthenticated, auth.login)
     postRouter.post('/api/validate', auth.isAuthenticated, auth.validate)
     postRouter.post("/api/verify-mfa-enrollment", auth.isNotAuthenticated, auth.verifyMFA)
+    postRouter.put("/api/create-post", auth.isAuthenticated, postController.createPost)
 
     return app.use('/', postRouter)
 }
 
-module.exports = postRouter;
 module.exports = initPostRouter;

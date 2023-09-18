@@ -91,3 +91,34 @@ exports.sendSecretToDb = (userID, totp) => {
         })
     })
 }
+
+exports.createPost = (postID, userID, postContent, title) => {
+    return new Promise((resolve, reject) => {
+        DB.query("INSERT INTO posts SET ?", {
+            postID: postID,
+            userID: userID,
+            postContent: postContent,
+            title: title
+        }, (err) => {
+            try {
+                if (err) throw err;
+                resolve(true)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.getPosts = () => {
+    return new Promise((resolve, reject) => {
+        DB.query("SELECT * FROM posts", (err, posts) => {
+            try {
+                if (err) throw err;
+                resolve(posts)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    })
+}

@@ -8,6 +8,6 @@ const clicked = () => {
 
 </script>
 <template>
-<QuillEditor @change="clicked($event)" theme="snow" v-model:content="content" contentType="html"/>
-<button @click="clicked()">SAVE</button>
+    <QuillEditor @change="clicked($event)" theme="snow" v-model:content="content" contentType="html"/>
+    <button @click="clicked()">SAVE</button>
 </template>
