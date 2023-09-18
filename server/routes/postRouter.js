@@ -7,6 +7,7 @@ const initPostRouter = (app) => {
     postRouter.put('/api/register', auth.isNotAuthenticated, auth.register)
     postRouter.post('/api/login', auth.isNotAuthenticated, auth.login)
     postRouter.post('/api/validate', auth.isAuthenticated, auth.validate)
+    postRouter.post("/api/verify-mfa-enrollment", auth.isNotAuthenticated, auth.verifyMFA)
 
     return app.use('/', postRouter)
 }
