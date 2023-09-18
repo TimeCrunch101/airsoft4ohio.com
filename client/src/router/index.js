@@ -58,6 +58,11 @@ const router = createRouter({
       component: () => import('../views/RegisterView.vue')
     },
     {
+      path: '/editor',
+      name: 'Editor',
+      component: () => import('../views/Editor.vue')
+    },
+    {
       path: '/logout',
       name: 'logout',
       beforeEnter: (to, from, next) => {

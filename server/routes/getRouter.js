@@ -1,12 +1,13 @@
 const express = require('express');
 const getController = require("../controllers/getController")
-const router = express.Router();
+const getRouter = express.Router();
 
 const initGetRouter = (app) => {
-    router.get('/api/', getController.get)
     
-    return app.use('/', router)
+    getRouter.get('/api/', getController.get)
+    getRouter.get("/api/get/posts", getController.getPosts)
+    
+    return app.use('/', getRouter)
 }
 
-module.exports = router;
 module.exports = initGetRouter;
