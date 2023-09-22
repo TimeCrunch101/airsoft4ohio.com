@@ -1,16 +1,6 @@
-<template>
-
-<ForumPost/>
-
-</template>
 <script setup>
 
-
-import ForumPost from '../components/ForumPost.vue'
-
 </script>
+<template>
 
-<style scoped>
-
-
-</style>
+</template>
