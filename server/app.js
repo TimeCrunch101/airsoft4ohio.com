@@ -22,6 +22,9 @@ app.use((req, res, next) => {
     next()
 })
 
+initGetRouter(app)
+initPostRouter(app)
+
 if (process.env.NODE_ENV === 'production') {
     app.use('/', apiLimiter)
     app.use(express.static(__dirname + '/public'))
@@ -35,8 +38,6 @@ if (process.env.NODE_ENV === 'production') {
     }))
 }
 
-initGetRouter(app)
-initPostRouter(app)
 
 app.all('/*', (req, res) => {
     res.status(404).json({

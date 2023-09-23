@@ -18,9 +18,9 @@ const getPosts = () => {
         alert('Could not fetch data')
     })
 }
-onMounted(() => {
-    getPosts()
-})
+getPosts()
+// onMounted(() => {
+// })
 
 </script>
 <template>
