@@ -15,6 +15,7 @@ exports.enrollMFA = (userEmail) => {
                     qrcode: data_url
                 })
             } catch (error) {
+                console.error(error)
                 reject(error)
             }
           });
@@ -31,6 +32,7 @@ exports.verifyTotp = (storedTotp, userTotp) => {
             })
             resolve(verified)
         } catch (error) {
+            console.error(error)
             reject(error)
         }
     })

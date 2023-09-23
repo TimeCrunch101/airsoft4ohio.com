@@ -11,6 +11,7 @@ exports.getUserByUsername = (username) => {
                     resolve(user)
                 }
             } catch (error) {
+                console.error(error)
                 reject(error)
             }
         })
@@ -28,6 +29,7 @@ exports.getUserByEmail = (email) => {
                     resolve(user)
                 }
             } catch (error) {
+                console.error(error)
                 reject(error)
             }
         })
@@ -41,6 +43,7 @@ exports.getUserByID = (userID) => {
                 if (err) throw new Error("Could not get user", {cause: err.message})
                 resolve(user[0])
             } catch (error) {
+                console.error(error)
                 reject(error)
             }
         })
@@ -59,6 +62,7 @@ exports.createUser = (newUser) => {
                 if (err) throw new Error("Could not create user", {cause: err.message})
                 resolve(true)
             } catch (error) {
+                console.error(error)
                 reject(error)
             }
         })
@@ -69,10 +73,11 @@ exports.getUserSecretFromDb = (userID) => {
     return new Promise((resolve, reject) => {
         DB.query("SELECT totp FROM dbt_users WHERE userID = ?",[userID],(err, totp) => {
             try {
-                if (err) throw err;
+                if (err) throw new Error("Could not get Skey from DB", {cause: err.message});
                 // if (totp[0].totp === null) throw new Error("No TOTP Saved!")
                 resolve(totp[0].totp)
             } catch (error) {
+                console.error(error)
                 reject(error)
             }
         })
@@ -83,9 +88,10 @@ exports.sendSecretToDb = (userID, totp) => {
     return new Promise((resolve, reject) => {
         DB.query("UPDATE dbt_users SET totp = ? WHERE userID = ?",[totp, userID], (err) => {
             try {
-                if (err) throw err;
+                if (err) throw new Error("Could not store Skey to DB", {cause: err.message});
                 resolve(true)
             } catch (error) {
+                console.error(error)
                 reject(error)
             }
         })
@@ -101,9 +107,10 @@ exports.createPost = (postID, userID, postContent, title) => {
             title: title
         }, (err) => {
             try {
-                if (err) throw err;
+                if (err) throw new Error("Could not create Post",{cause: err.message})
                 resolve(true)
             } catch (error) {
+                console.error(error)
                 reject(error)
             }
         })
@@ -114,9 +121,10 @@ exports.getPosts = () => {
     return new Promise((resolve, reject) => {
         DB.query("SELECT * FROM posts", (err, posts) => {
             try {
-                if (err) throw err;
+                if (err) throw new Error("Could not get posts", {cause: err.message});
                 resolve(posts)
             } catch (error) {
+                console.error(error)
                 reject(error)
             }
         })

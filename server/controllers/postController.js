@@ -12,9 +12,9 @@ exports.createPost = async (req, res) => {
             message: "Created"
         })
     } catch (error) {
-        console.error(error)
         res.status(500).json({
-            error: error
+            error: error.message,
+            cause: error.cause
         })
     }
 }
