@@ -17,3 +17,16 @@ exports.getPosts = async (req, res) => {
         })
     }
 }
+
+exports.getPost = async (req, res) => {
+    try {
+        const post = await DB.getPost(req.params.postID)
+        res.status(200).json({
+            post: post
+        })
+    } catch (error) {
+        res.status(500).json({
+            error: error.message // FIXME:
+        })
+    }    
+}

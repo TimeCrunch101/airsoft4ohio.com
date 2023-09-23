@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
-require("./socket")
+// require("./socket")
 const express = require('express')
 const rateLimit = require('express-rate-limit');
 const cors = require('cors')
@@ -22,6 +22,9 @@ app.use((req, res, next) => {
     next()
 })
 
+initGetRouter(app)
+initPostRouter(app)
+
 if (process.env.NODE_ENV === 'production') {
     app.use('/', apiLimiter)
     app.use(express.static(__dirname + '/public'))
@@ -35,8 +38,6 @@ if (process.env.NODE_ENV === 'production') {
     }))
 }
 
-initGetRouter(app)
-initPostRouter(app)
 
 app.all('/*', (req, res) => {
     res.status(404).json({
