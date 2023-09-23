@@ -1,23 +1,30 @@
 <script setup>
 import axios from "axios"
-import {ref} from "vue"
+import {ref, reactive, onMounted} from "vue"
 
 const posts = ref(null)
+const set = reactive({
+    posts
+})
 
 const getPosts = () => {
+    console.info('getting posts')
     axios.get("/api/get/posts", {
     }).then((res) => {
-        posts.value = res.data.posts
+        console.info('Got Posts')
+        set.posts = res.data.posts
+        console.info(res.data.posts)
     }).catch((err) => {
         alert('Could not fetch data')
     })
 }
-
-getPosts()
+onMounted(() => {
+    getPosts()
+})
 
 </script>
 <template>
-    <div class="d-flex flex-column">
+    <div v-if="posts" class="container d-flex flex-column">
         <router-link v-for="post in posts" :to="`/view/post/${post.postID}`">{{ post.title }}</router-link>
     </div>
 </template>
