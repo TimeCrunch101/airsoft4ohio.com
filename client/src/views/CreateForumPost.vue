@@ -68,7 +68,7 @@ const publishPost = () => {
 </template>
 <style scoped>
 .myContainer {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 800px;
+    max-height: 800px;
 }
 </style>

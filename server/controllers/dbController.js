@@ -122,3 +122,16 @@ exports.getPosts = () => {
         })
     })
 }
+
+exports.getPost = (postID) => {
+    return new Promise((resolve, reject) => {
+        DB.query("SELECT * FROM posts WHERE postID = ?", [postID], (err, post) => {
+            try {
+                if (err) throw err;
+                resolve(post[0])
+            } catch (error) {
+                reject(error)
+            }
+        })
+    })
+}
