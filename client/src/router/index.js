@@ -58,9 +58,9 @@ const router = createRouter({
       component: () => import('../views/RegisterView.vue')
     },
     {
-      path: '/editor',
-      name: 'Editor',
-      component: () => import('../views/Editor.vue')
+      path: '/view/post/:postID',
+      name: 'Post View',
+      component: () => import('../views/ViewPost.vue')
     },
     {
       path: '/logout',
