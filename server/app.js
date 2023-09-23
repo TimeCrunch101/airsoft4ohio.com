@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
-// require("./socket")
+require("./socket")
 const express = require('express')
 const rateLimit = require('express-rate-limit');
 const cors = require('cors')
