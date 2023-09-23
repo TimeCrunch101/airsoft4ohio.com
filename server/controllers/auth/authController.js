@@ -24,7 +24,8 @@ exports.isAuthenticated = async (req, res, next) => {
         }
     } catch (error) {
         res.status(400).json({
-            error: error
+            error: error.message,
+            cause: error.cause
         })
     }
 }
@@ -72,9 +73,10 @@ exports.register = (req, res) => {
             success: true,
             message: "User Created"
         })
-    }).catch((err) => {
+    }).catch((error) => {
         res.status(400).json({
-            error: err
+            error: error.message,
+            cause: error.cause
         })
     })
 }
@@ -135,9 +137,10 @@ exports.login = async (req, res) => {
         }
     } catch (error) {
         console.error(error)
-        res.status(400).json({
+        res.status(500).json({
             success: false,
-            error: error.message
+            error: error.message,
+            cause: error.cause
         })
     }
 

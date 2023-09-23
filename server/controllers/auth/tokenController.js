@@ -13,6 +13,7 @@ exports.tokenGen = (user, options) => {
             })
             resolve(token)
         } catch (error) {
+            console.error(error)
             reject(error)
         }
     })

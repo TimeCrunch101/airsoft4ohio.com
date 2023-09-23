@@ -8,7 +8,10 @@ const getPosts = () => {
     axios.get("/api/get/posts").then((res) => {
         posts.value = res.data.posts
     }).catch((err) => {
-        alert(err.response.data.error)
+        console.error(err.response.data)
+        alert(`${err.response.data.error}:
+        ${err.response.data.cause}
+        `)
     })
 }
 
