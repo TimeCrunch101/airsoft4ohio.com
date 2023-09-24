@@ -8,6 +8,13 @@ app.set("trust proxy", 2)
 const initGetRouter = require('./routes/getRouter')
 const initPostRouter = require('./routes/postRouter')
 
+if (process.env.NODE_ENV !== 'production') {
+    app.use(cors({
+        origin: 'http://localhost:5173',
+        credentials: true
+    }))
+}
+
 const apiLimiter = rateLimit({
     windowMs: 5 * 60 * 1000, // 15 minutes
     max: 700,
@@ -31,13 +38,7 @@ if (process.env.NODE_ENV === 'production') {
     app.get(/.*/, (req, res) => {
         res.sendFile(__dirname + '/public/index.html')
     })
-} else {
-    app.use(cors({
-        origin: 'http://localhost:5173',
-        credentials: true
-    }))
 }
-
 
 app.all('/*', (req, res) => {
     res.status(404).json({
