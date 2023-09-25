@@ -124,6 +124,7 @@ exports.login = async (req, res) => {
                 }
             } else if (!user.mfa_enforced) {
                 const token = await TC.tokenGen({
+                    userID: user.userID,
                     username: user.username,
                     email: user.email,
                     enforceMFA: user.mfa_enforced
