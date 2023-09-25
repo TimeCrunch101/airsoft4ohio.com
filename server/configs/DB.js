@@ -1,6 +1,8 @@
 // get the client
 const mysql = require('mysql2');
 
+const limit = 10;
+
 // Create the connection pool. The pool-specific settings are the defaults
 const DB = mysql.createPool({
   host: process.env.DB_HOST,
@@ -12,9 +14,9 @@ const DB = mysql.createPool({
     rejectUnauthorized: false,
   },
   waitForConnections: true,
-  connectionLimit: 10,
+  connectionLimit: limit,
   queueLimit: 0,
-  maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
+  maxIdle: limit, // max idle connections, the default value is the same as `connectionLimit`
   idleTimeout: 60000, // idle connections timeout, in milliseconds, the default value 60000
   enableKeepAlive: true,
   keepAliveInitialDelay: 0
