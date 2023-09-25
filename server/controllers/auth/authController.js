@@ -50,7 +50,9 @@ exports.isNotAuthenticated = async (req, res, next) => {
             }
         }
     } catch (error) {
-        res.sendStatus(400) // TODO: Send something more informative
+        res.status(400).json({
+            error: "You should not be logged in for that action"
+        })
     }
 }
 
