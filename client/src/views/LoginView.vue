@@ -75,6 +75,10 @@ const verifyMFA = (totp) => {
   })
 }
 
+const forgotPassword = () => {
+  router.push("/forgot-password")
+}
+
 </script>
 
 <template>
@@ -92,6 +96,7 @@ const verifyMFA = (totp) => {
     <input class="form-control mb-2" type="password" name="password" id="password" v-model="form.password">
     <input v-if="needSecondFactor" class="form-control mb-2" type="text" name="totp" id="totp" v-model="form.totp" placeholder="TOTP">
     <button class="btn btn-primary" type="submit">Login</button>
+    <button @click="forgotPassword()" type="button" class="btn btn-outline-secondary m-1">Forgot Password</button>
   </form>
   
   <MFAEnroll v-if="enrollMFA.status" @verify-mfa="verifyMFA($event)" :userSecret="enrollMFA.userSecret" :qrcode="enrollMFA.qrcode"/>

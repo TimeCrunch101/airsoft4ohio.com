@@ -158,3 +158,31 @@ exports.getUsers = () => {
         })
     })
 }
+
+exports.logResetToken = (token, userID) => {
+    return new Promise((resolve, reject) => {
+        DB.query("UPDATE dbt_users SET reset_token = ? WHERE userID = ?", [token, userID], (err) => {
+            try {
+                if (err) new Error('Could not save reset token', {cause: err.message});
+                resolve(true)
+            } catch (error) {
+                console.error(error)
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.resetPassword = (token, password) => {
+    return new Promise((resolve, reject) => {
+        DB.query("UPDATE dbt_users SET password = ? WHERE reset_token = ?", [password, token], (err) => {
+            try {
+                if (err) throw new Error('Could not set new password', {cause: err.message})
+                resolve(true)
+            } catch (error) {
+                console.error(error)
+                reject(error)
+            }
+        })
+    })
+}

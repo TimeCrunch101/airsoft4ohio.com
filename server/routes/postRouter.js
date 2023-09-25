@@ -5,6 +5,8 @@ const postRouter = express.Router();
 
 const initPostRouter = (app) => {
     postRouter.put('/api/register', auth.isNotAuthenticated, auth.register)
+    postRouter.post("/api/forgot-password", auth.isNotAuthenticated, auth.passwordReset)
+    postRouter.post("/api/reset-password", auth.isNotAuthenticated, auth.resetPassword)
     postRouter.post('/api/login', auth.isNotAuthenticated, auth.login)
     postRouter.post('/api/validate', auth.isAuthenticated, auth.validate)
     postRouter.post("/api/verify-mfa-enrollment", auth.isNotAuthenticated, auth.verifyMFA)

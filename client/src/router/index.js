@@ -78,31 +78,42 @@ const router = createRouter({
       }
     },
     {
+      path: '/forgot-password',
+      name: 'Forgot Password',
+      component: () => import('../views/ForgotPassword.vue')
+    },
+    {
+      path: '/reset-password/:uuid',
+      name: 'Reset Password',
+      component: () => import('../views/PasswordReset.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: () => import('../views/NotFound.vue')
-    }
+    },
+
   ]
 })
-// router.beforeEach(async (to, from, next) => {
-//   const isValid = await useAuthStore().validate();
+router.beforeEach(async (to, from, next) => {
+  const isValid = await useAuthStore().validate();
 
-//   switch (to.name) {
-//     case "Login":
-//       if (isValid) return next({name: from.name})
-//       else next()
-//       break;
-//     case "Forgot Password":
-//       if (isValid) return next({name: from.name})
-//       else next()
-//       break;
-//     case "Enroll MFA":
-//       if (!isValid) return next({name: from.name})
-//       else next()
-//       break;
-//     default:
-//       next()
-//       break;
-//   }
-// });
+  switch (to.name) {
+    case "Login":
+      if (isValid) return next({name: from.name})
+      else next()
+      break;
+    case "Forgot Password":
+      if (isValid) return next({name: from.name})
+      else next()
+      break;
+    case "Enroll MFA":
+      if (!isValid) return next({name: from.name})
+      else next()
+      break;
+    default:
+      next()
+      break;
+  }
+});
 export default router
