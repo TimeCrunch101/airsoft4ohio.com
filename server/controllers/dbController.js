@@ -135,7 +135,7 @@ exports.getPost = (postID) => {
     return new Promise((resolve, reject) => {
         DB.query("SELECT * FROM dbt_posts WHERE postID = ?", [postID], (err, post) => {
             try {
-                if (err) throw err;
+                if (err) throw new Error("Could not get post", {cause: err.message});
                 resolve(post[0])
             } catch (error) {
                 console.error(error)
