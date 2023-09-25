@@ -1,44 +1,42 @@
 <script setup>
-import FullCalendar from '@fullcalendar/vue3'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import {ref} from "vue";
+import FullCalendar from "@fullcalendar/vue3";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
+import { ref } from "vue";
 
 const calendarOptions = ref({
-    plugins: [dayGridPlugin,interactionPlugin],
-    initialView: "dayGridMonth",
-    events: [
-        {
-            id: 1,
-            title: "Event 1",
-            date: "2023-09-15"
-        },
-        {
-            id: 2,
-            title: "Event 2",
-            date: "2023-09-23"
-        }
-    ]
-})
+  plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin],
+  initialView: "dayGridMonth",
+  editable: true,
+  headerToolbar: {
+    start: "title",
+    center: "",
+    end: "today dayGridMonth,timeGridWeek,timeGridDay prevYear,prev,next,nextYear"
+  },
+  navLinks: true,
+  events: [
+    {
+      id: 1,
+      title: "Meeting",
+      start: "2023-09-22T14:30:00",
+      eventResizableFromStart: true,
+      eventDurationEditable: true
+    },
+    {
+      id: 2,
+      title: "Birthday Party",
+      start: "2023-09-24T07:00:00",
+      eventResizableFromStart: true,
+      eventDurationEditable: true
+    },
+  ],
+});
 
-
-
-// export default {
-//   components: {
-//     FullCalendar // make the <FullCalendar> tag available
-//   },
-//   data() {
-//     return {
-//       calendarOptions: {
-//         plugins: [ dayGridPlugin, interactionPlugin ],
-//         initialView: 'dayGridMonth'
-//       }
-//     }
-//   }
-// }
 </script>
 <template>
-    <div class="container">
-        <FullCalendar :options="calendarOptions"/>
-    </div>
+  <div class="container">
+    <FullCalendar :options="calendarOptions" />
+  </div>
 </template>
