@@ -3,6 +3,7 @@ const DB = require('../dbController')
 const bcrypt = require('bcrypt')
 const mfa = require("./mfaController")
 const TC = require('./tokenController')
+const utils = require("../../utils/validate")
 const { msgQueue } = require('../emailController')
 const {v4: uuidv4} = require('uuid')
 
@@ -63,7 +64,7 @@ exports.register = (req, res) => {
     ]).then(async() => {
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(req.body.password, salt)
-        await DB.registerUser({
+        await DB.createUser({
             userID: uuidv4(),
             username: req.body.username,
             email: req.body.email,
@@ -74,9 +75,9 @@ exports.register = (req, res) => {
             message: "User Created"
         })
     }).catch((error) => {
+        console.log(error)
         res.status(400).json({
-            error: error.message,
-            cause: error.cause
+            error: error
         })
     })
 }
