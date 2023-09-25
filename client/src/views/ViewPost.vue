@@ -15,6 +15,8 @@ const getPost = () => {
         const div = document.getElementById("content")
         div.innerHTML = post.value.postContent
     }).catch((err) => {
+        console.error(err.response.data.error)
+        console.error(err.response.data.cause)
         alert("Could not fetch post")
     })
 }
