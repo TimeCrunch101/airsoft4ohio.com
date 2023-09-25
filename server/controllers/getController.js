@@ -1,7 +1,12 @@
 const DB = require("./dbController")
 
-exports.get = (req, res) => {
-    res.sendStatus(200)
+exports.getUser = async (req, res) => {
+    console.log(req.user)
+    const user = await DB.getUserByID(req.user.userID)
+    console.log(user)
+    res.status(200).json({
+        user
+    })
 }
 
 exports.getPosts = async (req, res) => {
@@ -26,7 +31,8 @@ exports.getPost = async (req, res) => {
         })
     } catch (error) {
         res.status(500).json({
-            error: error.message // FIXME:
+            error: error.message,
+            cause: error.cause
         })
     }    
 }
