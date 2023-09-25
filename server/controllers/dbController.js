@@ -119,7 +119,7 @@ exports.createPost = (postID, userID, postContent, title) => {
 
 exports.getPosts = () => {
     return new Promise((resolve, reject) => {
-        DB.query("SELECT * FROM dbt_posts LIMIT 200", (err, posts) => {
+        DB.query("SELECT * FROM dbt_posts", (err, posts) => {
             try {
                 if (err) throw new Error("Could not get posts", {cause: err.message});
                 resolve(posts)
@@ -147,7 +147,7 @@ exports.getPost = (postID) => {
 
 exports.getUsers = () => {
     return new Promise((resolve, reject) => {
-        DB.query("SELECT * FROM dbt_users LIMIT 200", (err, users) => {
+        DB.query("SELECT * FROM dbt_users", (err, users) => {
             try {
                 if (err) throw new Error("Could not retrieve users", {cause: err.message})
                 resolve(users)
