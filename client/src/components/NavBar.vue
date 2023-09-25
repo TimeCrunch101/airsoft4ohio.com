@@ -20,7 +20,7 @@
           <router-link class="nav-link" to="/fields">FIELDS <i class="bi bi-grid-3x3-gap-fill"></i></router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/privacy">PRIVACY POLICY</router-link>
+          <router-link class="nav-link" to="/privacy">PRIVACY POLICY <i class="bi bi-eye-slash"></i></router-link>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">FORUMS <i class="bi bi-info-circle-fill"></i></a>
@@ -28,6 +28,9 @@
             <li><router-link class="dropdown-item" to="/forums">View <i class="bi bi-eye-fill"></i></router-link></li>
             <li v-if="useAuthStore().isAuthenticated"><router-link class="dropdown-item" to="/create/post">Create Post <i class="bi bi-postcard"></i></router-link></li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <router-link v-if="useAuthStore().isAuthenticated" class="nav-link" to="/profile">PROFILE <i class="bi bi-person-lines-fill"></i></router-link>
         </li>
         <li class="nav-item">
           <router-link v-if="!useAuthStore().isAuthenticated" class="nav-link" to="/login">LOGIN <i class="bi bi-door-open-fill"></i></router-link>

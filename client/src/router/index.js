@@ -11,6 +11,12 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue')
     },
     {
+      path: "/profile",
+      name: "Profile",
+      component: () => import("../views/ProfileView.vue")
+
+    },
+    {
       path: '/privacy',
       name: 'Privacy Policy',
       component: () => import('../views/PrivacyPolicy.vue')
