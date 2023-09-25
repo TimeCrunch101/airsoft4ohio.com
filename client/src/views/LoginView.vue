@@ -4,9 +4,11 @@ import { ref, reactive } from 'vue';
 import { useRouter } from "vue-router"
 import { useAuthStore } from '../stores/auth';
 import MFAEnroll from '../components/MFAEnroll.vue';
+import Loading from '../components/Loading.vue';
 const auth = useAuthStore()
 const router = useRouter()
 
+const loading = ref(false)
 const form = ref({
   username: null,
   password: null,
@@ -25,10 +27,12 @@ const enrollMFA = ref({
 const set = reactive({
   needSecondFactor,
   error,
-  enrollMFA
+  enrollMFA,
+  loading
 })
 
 const login = () => {
+  set.loading = true
   axios.post("/api/login",{
     username: form.value.username,
     password: form.value.password,
@@ -48,11 +52,15 @@ const login = () => {
       alert("Something expected happened, please refresh and try again.")
     }
   }).catch((err) => {
-    alert(err.response.data)
+    console.log(err.response.data)
+    alert("Unsuccessful login attempt, please try again.")
+  }).finally(() => {
+    set.loading = false
   })
 }
 
 const verifyMFA = (totp) => {
+  set.loading = true
   axios.post("/api/verify-mfa-enrollment",{
     username: form.value.username,
     password: form.value.password,
@@ -62,26 +70,47 @@ const verifyMFA = (totp) => {
     router.push("/")
   }).catch((err) => {
     alert(err.response.data)
+  }).finally(() => {
+    set.loading = false
   })
+}
+
+const forgotPassword = () => {
+  router.push("/forgot-password")
 }
 
 </script>
 
 <template>
-  <p v-if="error.show" class="danger">{{ error.message }}</p>
-
-<form @submit.prevent="login()">
-  <input type="text" name="username" id="username" v-model="form.username" placeholder="username">
-  <input type="password" name="password" id="password" v-model="form.password" placeholder="password">
-  <input v-if="needSecondFactor" type="text" name="totp" id="totp" v-model="form.totp" placeholder="TOTP">
-  <button type="submit">Login</button>
-</form>
-
-<MFAEnroll v-if="enrollMFA.status" @verify-mfa="verifyMFA($event)" :userSecret="enrollMFA.userSecret" :qrcode="enrollMFA.qrcode"/>
+  <Loading :loading="loading"/>
+  <div class="container max">
+    <div class="mb-3 d-flex gap-1">
+      <router-link to="/register">Register</router-link>
+      <span v-if="error.show" class="text-danger">{{ error.message }}</span>
+    </div>
+  
+  <form @submit.prevent="login()">
+    <label for="username" class="form-label">Username</label>
+    <input class="form-control mb-2" type="text" name="username" id="username" v-model="form.username">
+    <label for="password" class="form-label">Password</label>
+    <input class="form-control mb-2" type="password" name="password" id="password" v-model="form.password">
+    <input v-if="needSecondFactor" class="form-control mb-2" type="text" name="totp" id="totp" v-model="form.totp" placeholder="TOTP">
+    <button class="btn btn-primary" type="submit">Login</button>
+    <button @click="forgotPassword()" type="button" class="btn btn-outline-secondary m-1">Forgot Password</button>
+  </form>
+  
+  <MFAEnroll v-if="enrollMFA.status" @verify-mfa="verifyMFA($event)" :userSecret="enrollMFA.userSecret" :qrcode="enrollMFA.qrcode"/>
+  </div>
 
 </template>
 
 
 <style scoped>
+.max {
+  max-width: 50%;
+}
+#totp {
+  max-width: 130px;
+}
 
 </style>

@@ -100,7 +100,7 @@ exports.sendSecretToDb = (userID, totp) => {
 
 exports.createPost = (postID, userID, postContent, title) => {
     return new Promise((resolve, reject) => {
-        DB.query("INSERT INTO posts SET ?", {
+        DB.query("INSERT INTO dbt_posts SET ?", {
             postID: postID,
             userID: userID,
             postContent: postContent,
@@ -119,7 +119,7 @@ exports.createPost = (postID, userID, postContent, title) => {
 
 exports.getPosts = () => {
     return new Promise((resolve, reject) => {
-        DB.query("SELECT * FROM posts LIMIT 200", (err, posts) => {
+        DB.query("SELECT * FROM dbt_posts LIMIT 200", (err, posts) => {
             try {
                 if (err) throw new Error("Could not get posts", {cause: err.message});
                 resolve(posts)
@@ -133,9 +133,9 @@ exports.getPosts = () => {
 
 exports.getPost = (postID) => {
     return new Promise((resolve, reject) => {
-        DB.query("SELECT * FROM posts WHERE postID = ?", [postID], (err, post) => {
+        DB.query("SELECT * FROM dbt_posts WHERE postID = ?", [postID], (err, post) => {
             try {
-                if (err) throw err;
+                if (err) throw new Error("Could not get post", {cause: err.message});
                 resolve(post[0])
             } catch (error) {
                 console.error(error)
@@ -151,6 +151,34 @@ exports.getUsers = () => {
             try {
                 if (err) throw new Error("Could not retrieve users", {cause: err.message})
                 resolve(users)
+            } catch (error) {
+                console.error(error)
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.logResetToken = (token, userID) => {
+    return new Promise((resolve, reject) => {
+        DB.query("UPDATE dbt_users SET reset_token = ? WHERE userID = ?", [token, userID], (err) => {
+            try {
+                if (err) new Error('Could not save reset token', {cause: err.message});
+                resolve(true)
+            } catch (error) {
+                console.error(error)
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.resetPassword = (token, password) => {
+    return new Promise((resolve, reject) => {
+        DB.query("UPDATE dbt_users SET password = ? WHERE reset_token = ?", [password, token], (err) => {
+            try {
+                if (err) throw new Error('Could not set new password', {cause: err.message})
+                resolve(true)
             } catch (error) {
                 console.error(error)
                 reject(error)

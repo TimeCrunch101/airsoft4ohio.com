@@ -3,6 +3,7 @@ const DB = require('../dbController')
 const bcrypt = require('bcrypt')
 const mfa = require("./mfaController")
 const TC = require('./tokenController')
+const utils = require("../../utils/validate")
 const { msgQueue } = require('../emailController')
 const {v4: uuidv4} = require('uuid')
 
@@ -49,7 +50,9 @@ exports.isNotAuthenticated = async (req, res, next) => {
             }
         }
     } catch (error) {
-        res.sendStatus(400) // TODO: Send something more informative
+        res.status(400).json({
+            error: "You should not be logged in for that action"
+        })
     }
 }
 
@@ -63,7 +66,7 @@ exports.register = (req, res) => {
     ]).then(async() => {
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(req.body.password, salt)
-        await DB.registerUser({
+        await DB.createUser({
             userID: uuidv4(),
             username: req.body.username,
             email: req.body.email,
@@ -74,9 +77,9 @@ exports.register = (req, res) => {
             message: "User Created"
         })
     }).catch((error) => {
+        console.log(error)
         res.status(400).json({
-            error: error.message,
-            cause: error.cause
+            error: error
         })
     })
 }
@@ -123,6 +126,7 @@ exports.login = async (req, res) => {
                 }
             } else if (!user.mfa_enforced) {
                 const token = await TC.tokenGen({
+                    userID: user.userID,
                     username: user.username,
                     email: user.email,
                     enforceMFA: user.mfa_enforced
@@ -167,41 +171,41 @@ exports.validate = (req, res) => {
     });
 };
 
-// exports.passwordReset = (req, res) => {
-//     if (req.params.userEmail === null) res.sendStatus(400)
-//     DB.getUserByEmail(req.params.userEmail).then((data) => {
-//         const resetToken = uuidv4()
-//         DB.logResetToken(resetToken, data.email).then(() => {
-//             msgQueue.push({
-//                 to: data.email,
-//                 subject: 'Password Reset Request',
-//                 body: ((process.env.NODE_ENV !== "production") ? `Here is your password reset link: http://localhost:5173/reset-password/${resetToken}` : `Here is your password reset link: https://airsoft4ohio.com/reset-password/${resetToken}`)
-//             })
-//         }).catch((err) => {
-//             res.status(500).json({
-//                 error: err.message,
-//                 cause: err.cause
-//             })
-//         })
-//     }).catch((err) => {
-//         console.error(err)
-//     })
-//     res.status(200).json({
-//         message: 'Thank you for your request. Keep an eye on your email.'
-//     })
-// }
+exports.passwordReset = (req, res) => {
+    if (req.body.email === null || req.body.email === undefined) return res.sendStatus(400)
+    DB.getUserByEmail(req.body.email).then((data) => {
+        const resetToken = uuidv4() // FIXME: Do Better
+        DB.logResetToken(resetToken, data.userID).then(() => {
+            msgQueue.push({
+                to: data.email,
+                subject: 'Password Reset Request',
+                body: ((process.env.NODE_ENV !== "production") ? `Here is your password reset link: http://localhost:5173/reset-password/${resetToken}` : `Here is your password reset link: https://airsoft4ohio.com/reset-password/${resetToken}`)
+            })
+        }).catch((err) => {
+            res.status(500).json({
+                error: err.message,
+                cause: err.cause
+            })
+        })
+    }).catch((err) => {
+        console.error(err)
+    })
+    res.status(200).json({
+        message: 'Thank you for your request. Keep an eye on your email.'
+    })
+}
 
-// exports.resetPassword = async (req, res) => {
-//     const hash = bcrypt.hashSync(req.body.password, 10);
-//     try {
-//         await DB.resetPassword(req.params.token, hash)
-//         res.status(200).json({
-//             message: 'Password reset successfully'
-//         })
-//     } catch (error) {
-//         res.status(500).json({
-//             error: error.message,
-//             cause: error.cause
-//         })
-//     }
-// }
+exports.resetPassword = async (req, res) => {
+    const hash = bcrypt.hashSync(req.body.password, 10);
+    try {
+        await utils.validatePassword(req.body.password)
+        await DB.resetPassword(req.body.uuid, hash)
+        res.status(200).json({
+            message: 'Password reset successfully'
+        })
+    } catch (error) {
+        res.status(400).json({
+            error
+        })
+    }
+}

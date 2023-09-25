@@ -2,9 +2,10 @@
 import axios from 'axios'
 import { ref, computed, reactive } from 'vue';
 import { useRouter } from "vue-router"
+import Loading from '../components/Loading.vue';
 
 const router = useRouter()
-
+const loading = ref(false)
 const form = ref({
     username: null,
     email: null,
@@ -13,7 +14,8 @@ const form = ref({
 })
 const errorMessage = ref(null)
 const set = reactive({
-    errorMessage
+    errorMessage,
+    loading
 })
 
 
@@ -35,23 +37,21 @@ const validatePassword = computed(() => {
 
 const register = () => {
     if (!errorMessage.value) {
+        set.loading = true
         axios.put("/api/register",{
             username: form.value.username,
             email: form.value.email,
             password: form.value.password,
         }).then((res) => {
             if (res.data.success) {
+                alert("Account Created")
                 router.push("/login")
             }
         }).catch((err) => {
-            console.error(`
-            ${err.response.data.error}
-            ${err.response.data.cause}
-            `)
-            alert(`
-            ${err.response.data.error}
-            ${err.response.data.cause}
-            `)
+            console.error(err.response.data.error)
+            alert(err.response.data.error)
+        }).finally(() => {
+            set.loading = false
         })
     } else {
         alert("Fix your errors first")
@@ -70,6 +70,7 @@ const register = () => {
 
 
 <template>
+    <Loading :loading="loading"/>
 
 
 <div class="container">

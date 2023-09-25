@@ -46,7 +46,7 @@ if (Cluster.isPrimary) {
     initPostRouter(app)
     
     if (process.env.NODE_ENV === 'production') {
-        // app.use('/', apiLimiter)
+        app.use('/api', apiLimiter)
         app.use(express.static(__dirname + '/public'))
         app.get(/.*/, (req, res) => {
             res.sendFile(__dirname + '/public/index.html')
