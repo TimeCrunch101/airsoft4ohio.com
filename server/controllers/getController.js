@@ -8,7 +8,7 @@ exports.getPosts = async (req, res) => {
     try {
         const posts = await DB.getPosts()
         res.status(200).json({
-            posts: posts
+            posts
         })
     } catch (error) {
         res.status(500).json({
@@ -29,4 +29,19 @@ exports.getPost = async (req, res) => {
             error: error.message // FIXME:
         })
     }    
+}
+
+exports.getUsers = async (req, res) => {
+    try {
+        const users = await DB.getUsers()
+        const usersString = JSON.stringify(users)
+        res.status(200).json({
+            usersString
+        })
+    } catch (error) {
+        res.status(500).json({
+            error: error.message,
+            cause: error.cause
+        })
+    }
 }

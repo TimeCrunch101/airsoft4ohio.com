@@ -138,6 +138,21 @@ exports.getPost = (postID) => {
                 if (err) throw err;
                 resolve(post[0])
             } catch (error) {
+                console.error(error)
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.getUsers = () => {
+    return new Promise((resolve, reject) => {
+        DB.query("SELECT * FROM dbt_users", (err, users) => {
+            try {
+                if (err) throw new Error("Could not retrieve users", {cause: err.message})
+                resolve(users)
+            } catch (error) {
+                console.error(error)
                 reject(error)
             }
         })

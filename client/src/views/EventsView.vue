@@ -18,19 +18,40 @@ const calendarOptions = ref({
   navLinks: true,
   events: [
     {
-      id: 1,
-      title: "Meeting",
-      start: "2023-09-22T14:30:00",
-      eventResizableFromStart: true,
-      eventDurationEditable: true
-    },
-    {
-      id: 2,
-      title: "Birthday Party",
-      start: "2023-09-24T07:00:00",
-      eventResizableFromStart: true,
-      eventDurationEditable: true
-    },
+        id: 1,
+        title: "Meeting",
+        start: "2023-09-22T14:30:00",
+        eventResizableFromStart: true,
+        eventDurationEditable: true
+      },
+      {
+        id: 2,
+        title: "Airsoft Event",
+        start: "2023-09-24T07:00:00",
+        eventResizableFromStart: true,
+        eventDurationEditable: true
+      },
+      {
+        id: 3,
+        title: "Meeting",
+        start: "2023-09-27T07:00:00",
+        eventResizableFromStart: true,
+        eventDurationEditable: true
+      },
+      {
+        id: 4,
+        title: "Party",
+        start: "2023-09-20T07:00:00",
+        eventResizableFromStart: true,
+        eventDurationEditable: true
+      },
+      {
+        id: 5,
+        title: "Store Opens",
+        start: "2023-09-19T07:00:00",
+        eventResizableFromStart: true,
+        eventDurationEditable: true
+      },
   ],
 });
 
