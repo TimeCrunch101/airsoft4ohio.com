@@ -90,7 +90,7 @@ const verifyMFA = (totp) => {
     <input class="form-control mb-2" type="text" name="username" id="username" v-model="form.username">
     <label for="password" class="form-label">Password</label>
     <input class="form-control mb-2" type="password" name="password" id="password" v-model="form.password">
-    <input v-if="needSecondFactor" type="text" name="totp" id="totp" v-model="form.totp" placeholder="TOTP">
+    <input v-if="needSecondFactor" class="form-control mb-2" type="text" name="totp" id="totp" v-model="form.totp" placeholder="TOTP">
     <button class="btn btn-primary" type="submit">Login</button>
   </form>
   
@@ -103,6 +103,9 @@ const verifyMFA = (totp) => {
 <style scoped>
 .max {
   max-width: 50%;
+}
+#totp {
+  max-width: 130px;
 }
 
 </style>
