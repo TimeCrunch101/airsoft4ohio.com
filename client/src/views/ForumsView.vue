@@ -8,19 +8,14 @@ const set = reactive({
 })
 
 const getPosts = () => {
-    console.info('getting posts')
     axios.get("/api/get/posts", {
     }).then((res) => {
-        console.info('Got Posts')
         set.posts = res.data.posts
-        console.info(res.data.posts)
     }).catch((err) => {
         alert('Could not fetch data')
     })
 }
 getPosts()
-// onMounted(() => {
-// })
 
 </script>
 <template>
