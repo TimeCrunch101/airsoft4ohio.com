@@ -187,6 +187,34 @@ exports.resetPassword = (token, password) => {
     })
 }
 
+exports.validateResetToken = (token) => {
+    return new Promise((resolve, reject) => {
+        DB.query("SELECT reset_token FROM dbt_users WHERE reset_token = ?", [token], (err, token) => {
+            try {
+                if (err) throw new Error("Could not validate token", {cause: err.message})
+                if (token.length === 0) throw new Error("Token not valid")
+                resolve(true)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.newPassword = (userID, password) => {
+    return new Promise((resolve, reject) => {
+        DB.query("UPDATE dbt_users SET password = ? WHERE userID = ?", [password, userID], (err) => {
+            try {
+                if (err) throw new Error('Could not set new password', {cause: err.message})
+                resolve(true)
+            } catch (error) {
+                console.error(error)
+                reject(error)
+            }
+        })
+    })
+}
+
 exports.removeResetToken = (userID) => {
     return new Promise((resolve, reject) => {
         DB.query("UPDATE dbt_users SET reset_token = NULL WHERE userID = ?",[userID], (err) => {

@@ -15,6 +15,7 @@ const initPostRouter = (app) => {
     postRouter.patch("/api/enforce/mfa", auth.isAuthenticated, postController.enforceMFA)
     postRouter.patch("/api/disable/mfa", auth.isAuthenticated, postController.disableMFA)
     postRouter.delete("/api/purge-account", auth.isAuthenticated, postController.purgeAccount)
+    postRouter.patch("/api/set-new/password", auth.isAuthenticated, auth.newPassword)
 
     return app.use('/', postRouter)
 }

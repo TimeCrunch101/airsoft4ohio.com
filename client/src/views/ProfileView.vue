@@ -4,6 +4,7 @@ import { ref, reactive } from "vue"
 import { useAuthStore } from "../stores/auth";
 import Loading from "../components/Loading.vue";
 import router from "../router";
+import SecurityTab from "../components/profile/SecurityTab.vue"
 
 const auth = useAuthStore()
 const token = ref(auth.getToken)
@@ -87,20 +88,22 @@ const validateTotp = () => {
 }
 
 const disableMFA = () => {
-    set.loading = true
-    axios.patch("/api/disable/mfa", {}, {
-        headers: {
-            Authorization: `Bearer ${token.value}`
-        }
-    }).then((res) => {
-        alert("MFA Disabled")
-        getUserProfile()
-    }).catch((err) => {
-        console.error(err.response.data)
-        alert("Could not disable MFA")
-    }).finally(() => {
-        set.loading = false
-    })
+    if (confirm("Are you sure you want to disable MFA? This will make your account unsecure.")) {
+        set.loading = true
+        axios.patch("/api/disable/mfa", {}, {
+            headers: {
+                Authorization: `Bearer ${token.value}`
+            }
+        }).then((res) => {
+            alert("MFA Disabled")
+            getUserProfile()
+        }).catch((err) => {
+            console.error(err.response.data)
+            alert("Could not disable MFA")
+        }).finally(() => {
+            set.loading = false
+        })
+    }
 }
 
 const purgeAccount = () => {
@@ -121,7 +124,13 @@ const purgeAccount = () => {
             set.loading = false
             location.reload()
         })
+    } else {
+        set.loading = false
     }
+}
+
+const setLoading = (e) => {
+    set.loading = e
 }
 
 getUserProfile()
@@ -131,19 +140,37 @@ getUserProfile()
 <template>
 <Loading :loading="loading"/>
 
-<div v-if="user" class="container">
-    <p>{{ user.username }}</p>
-    <p>{{ user.email }}</p>
-    <button class="btn btn-outline-success" v-if="user.mfa_enforced !== 1" @click="enrollMFA()">Enroll MFA</button>
-    <button class="btn btn-outline-danger" @click="disableMFA()" v-else>Disable MFA</button>
-    <div v-if="mfaData.qrcode">
-        <img :src="mfaData.qrcode" alt="QRCODE">
-        <p>{{ mfaData.secret }}</p>
-        <input type="text" name="totp" id="totp" v-model="testTotp">
-        <button @click="validateTotp()">Submit TOTP Validation</button>
+
+<div class="container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Main</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Security</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+            <div v-if="user" class="container">
+                <p>{{ user.username }}</p>
+                <p>{{ user.email }}</p>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+            <div v-if="user" class="container">
+                <button class="btn btn-outline-success" v-if="user.mfa_enforced !== 1" @click="enrollMFA()">Enroll MFA</button>
+                <button class="btn btn-outline-danger" @click="disableMFA()" v-else>Disable MFA</button>
+                <div v-if="mfaData.qrcode">
+                    <img :src="mfaData.qrcode" alt="QRCODE">
+                    <p>{{ mfaData.secret }}</p>
+                    <input type="text" name="totp" id="totp" v-model="testTotp">
+                    <button @click="validateTotp()">Submit TOTP Validation</button>
+                </div>
+                <br>
+                <button type="button" class="btn btn-danger m-3" @click="purgeAccount()">PURGE ACCOUNT</button>
+                <SecurityTab @loading-toggle="setLoading($event)" :userID="user.userID" :token="token"/>
+            </div>
+      </div>
     </div>
-    <br>
-    <button type="button" class="btn btn-danger m-3" @click="purgeAccount()">PURGE ACCOUNT</button>
 </div>
 
 
