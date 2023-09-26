@@ -173,8 +173,8 @@ exports.validate = (req, res) => {
 
 exports.passwordReset = (req, res) => {
     if (req.body.email === null || req.body.email === undefined) return res.sendStatus(400)
-    DB.getUserByEmail(req.body.email).then((data) => {
-        const resetToken = uuidv4() // FIXME: Do Better
+    DB.getUserByEmail(req.body.email).then(async(data) => {
+        const resetToken = await TC.generateResetToken()
         DB.logResetToken(resetToken, data.userID).then(() => {
             if (data.email !== undefined) {
                 msgQueue.push({
@@ -199,11 +199,11 @@ exports.passwordReset = (req, res) => {
 
 exports.resetPassword = async (req, res) => {
     try {
-        await DB.validateResetToken(req.body.uuid)
+        await DB.validateResetToken(req.body.resetToken)
         const hash = bcrypt.hashSync(req.body.password, 10);
         await utils.validatePassword(req.body.password)
-        await DB.resetPassword(req.body.uuid, hash)
-        await DB.removeResetToken(req.body.uuid)
+        await DB.resetPassword(req.body.resetToken, hash)
+        await DB.removeResetToken(req.body.resetToken)
         res.status(200).json({
             message: 'Password reset successfully'
         })
@@ -217,7 +217,6 @@ exports.newPassword = async (req, res) => {
         const hash = bcrypt.hashSync(req.body.password, 10);
         await utils.validatePassword(req.body.password)
         await DB.newPassword(req.user.userID, hash)
-        await DB.removeResetToken(req.body.uuid)
         res.status(200).json({
             message: 'Password reset successfully'
         })

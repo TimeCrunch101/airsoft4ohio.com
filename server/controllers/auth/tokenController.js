@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt")
+const {v4: uuidv4} = require('uuid')
 
 exports.tokenGen = (user, options) => {
     return new Promise((resolve, reject) => {
@@ -31,5 +33,29 @@ exports.validateToken = (token) => {
                 })
             }
         })
+    })
+}
+
+exports.generateResetToken = () => {
+    return new Promise(async(resolve, reject) => {
+        try {
+            const now = Date.now()
+            const random = Math.floor(Math.random() * 50_000_000)
+            const uuid = uuidv4()
+            const seed = ((now+random).toString()+uuid)
+            let newHash = ""
+            const hash = bcrypt.hashSync(seed,10)
+            for (let i = 0; i < hash.length; i++) {
+                const element = hash[i];    
+                if (element !== "." && element !== "/" && element !== "$") {
+                    newHash += element
+                }
+            }
+            resolve(newHash)
+        } catch (error) {
+            reject(error)
+        } finally {
+            newHash = null
+        }
     })
 }
