@@ -201,7 +201,11 @@ exports.resetPassword = async (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, 10);
     try {
         await utils.validatePassword(req.body.password)
-        await DB.resetPassword(req.body.uuid, hash)
+        if (req.body.newPass) { // FIXME: This is bad
+            await DB.newPassword(req.body.uuid, hash)
+        } else {
+            await DB.resetPassword(req.body.uuid, hash)
+        }
         await DB.removeResetToken(req.body.uuid)
         res.status(200).json({
             message: 'Password reset successfully'

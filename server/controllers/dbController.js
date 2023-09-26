@@ -187,6 +187,20 @@ exports.resetPassword = (token, password) => {
     })
 }
 
+exports.newPassword = (userID, password) => {
+    return new Promise((resolve, reject) => {
+        DB.query("UPDATE dbt_users SET password = ? WHERE userID = ?", [password, userID], (err) => {
+            try {
+                if (err) throw new Error('Could not set new password', {cause: err.message})
+                resolve(true)
+            } catch (error) {
+                console.error(error)
+                reject(error)
+            }
+        })
+    })
+}
+
 exports.removeResetToken = (userID) => {
     return new Promise((resolve, reject) => {
         DB.query("UPDATE dbt_users SET reset_token = NULL WHERE userID = ?",[userID], (err) => {

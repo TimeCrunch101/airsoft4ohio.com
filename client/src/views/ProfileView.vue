@@ -4,6 +4,7 @@ import { ref, reactive } from "vue"
 import { useAuthStore } from "../stores/auth";
 import Loading from "../components/Loading.vue";
 import router from "../router";
+import SecurityTab from "../components/profile/SecurityTab.vue"
 
 const auth = useAuthStore()
 const token = ref(auth.getToken)
@@ -128,6 +129,10 @@ const purgeAccount = () => {
     }
 }
 
+const setLoading = (e) => {
+    set.loading = e
+}
+
 getUserProfile()
 
 
@@ -162,6 +167,7 @@ getUserProfile()
                 </div>
                 <br>
                 <button type="button" class="btn btn-danger m-3" @click="purgeAccount()">PURGE ACCOUNT</button>
+                <SecurityTab @loading-toggle="setLoading($event)" :userID="user.userID" :token="token"/>
             </div>
       </div>
     </div>
