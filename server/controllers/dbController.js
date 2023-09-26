@@ -186,3 +186,62 @@ exports.resetPassword = (token, password) => {
         })
     })
 }
+
+exports.removeResetToken = (userID) => {
+    return new Promise((resolve, reject) => {
+        DB.query("UPDATE dbt_users SET reset_token = NULL WHERE userID = ?",[userID], (err) => {
+            try {
+                if (err) throw new Error("Could not remove reset token", {cause: err.message})
+                resolve(true)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.enforceMFA = (userID) => {
+    return new Promise((resolve, reject) => {
+        DB.query("UPDATE dbt_users SET mfa_enforced = 1 WHERE userID = ?", [userID], (err) => {
+            try {
+                if (err) throw new Error("Could not enforce MFA", {cause: err.message})
+                resolve(true)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.disableMFA = (userID) => {
+    return new Promise((resolve, reject) => {
+        DB.query("UPDATE dbt_users SET totp = NULL, mfa_enforced = 0 WHERE userID = ?", [userID], (err) => {
+            try {
+                if (err) throw new Error("Could not disable MFA", {cause: err.message})
+                resolve(true)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.purgeAccount = (userID) => {
+    return new Promise((resolve, reject) => {
+        DB.query("DELETE FROM dbt_users WHERE userID = ?", [userID], (err) => {
+            try {
+                if (err) throw new Error("Could not delete user", {cause: err.message})
+                resolve(true)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.logEmailStatus = (message) => {
+    const store = JSON.stringify(message)
+    DB.query("INSERT INTO email_logs SET ?", {message: store}, (err) => {
+        if (err) console.error(err)
+    })
+}

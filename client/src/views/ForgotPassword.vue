@@ -21,9 +21,8 @@ const submitEmail = () => {
         if (res.status === 200) {
             setTimeout(() => {
                 router.push("/login")
-            }, 2000);
+            }, 500);
         }
-        console.log(res.status)
     }).catch((err) => {
         console.error(err.response.data)
         alert("Could not post email")

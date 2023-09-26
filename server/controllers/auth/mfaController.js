@@ -4,7 +4,7 @@ const QRCode = require('qrcode');
 exports.enrollMFA = (userEmail) => {
     return new Promise((resolve, reject) => {
         const secret = speakeasy.generateSecret({
-            issuer: "Login Test",
+            issuer: "Airsoft4Ohio",
             name: userEmail
         })
         QRCode.toDataURL(secret.otpauth_url, function(err, data_url) {

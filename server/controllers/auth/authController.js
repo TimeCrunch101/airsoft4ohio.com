@@ -176,11 +176,13 @@ exports.passwordReset = (req, res) => {
     DB.getUserByEmail(req.body.email).then((data) => {
         const resetToken = uuidv4() // FIXME: Do Better
         DB.logResetToken(resetToken, data.userID).then(() => {
-            msgQueue.push({
-                to: data.email,
-                subject: 'Password Reset Request',
-                body: ((process.env.NODE_ENV !== "production") ? `Here is your password reset link: http://localhost:5173/reset-password/${resetToken}` : `Here is your password reset link: https://airsoft4ohio.com/reset-password/${resetToken}`)
-            })
+            if (data.email !== undefined) {
+                msgQueue.push({
+                    to: data.email,
+                    subject: 'Password Reset Request',
+                    body: ((process.env.NODE_ENV !== "production") ? `Here is your password reset link: http://localhost:5173/reset-password/${resetToken}` : `Here is your password reset link: https://airsoft4ohio.com/reset-password/${resetToken}`)
+                })
+            }
         }).catch((err) => {
             res.status(500).json({
                 error: err.message,
@@ -200,6 +202,7 @@ exports.resetPassword = async (req, res) => {
     try {
         await utils.validatePassword(req.body.password)
         await DB.resetPassword(req.body.uuid, hash)
+        await DB.removeResetToken(req.body.uuid)
         res.status(200).json({
             message: 'Password reset successfully'
         })
