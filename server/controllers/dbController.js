@@ -173,9 +173,9 @@ exports.logResetToken = (token, userID) => {
     })
 }
 
-exports.resetPassword = (token, password) => {
+exports.resetPassword = (resetToken, password) => {
     return new Promise((resolve, reject) => {
-        DB.query("UPDATE dbt_users SET password = ? WHERE reset_token = ?", [password, token], (err) => {
+        DB.query("UPDATE dbt_users SET password = ? WHERE reset_token = ?", [password, resetToken], (err) => {
             try {
                 if (err) throw new Error('Could not set new password', {cause: err.message})
                 resolve(true)
@@ -187,9 +187,9 @@ exports.resetPassword = (token, password) => {
     })
 }
 
-exports.validateResetToken = (token) => {
+exports.validateResetToken = (resetToken) => {
     return new Promise((resolve, reject) => {
-        DB.query("SELECT reset_token FROM dbt_users WHERE reset_token = ?", [token], (err, token) => {
+        DB.query("SELECT reset_token FROM dbt_users WHERE reset_token = ?", [resetToken], (err, token) => {
             try {
                 if (err) throw new Error("Could not validate token", {cause: err.message})
                 if (token.length === 0) throw new Error("Token not valid")
@@ -215,9 +215,9 @@ exports.newPassword = (userID, password) => {
     })
 }
 
-exports.removeResetToken = (userID) => {
+exports.removeResetToken = (resetToken) => {
     return new Promise((resolve, reject) => {
-        DB.query("UPDATE dbt_users SET reset_token = NULL WHERE userID = ?",[userID], (err) => {
+        DB.query("UPDATE dbt_users SET reset_token = NULL WHERE reset_token = ?",[resetToken], (err) => {
             try {
                 if (err) throw new Error("Could not remove reset token", {cause: err.message})
                 resolve(true)

@@ -18,7 +18,7 @@ const resetPassword = () => {
     set.loading = true
     axios.post("/api/reset-password", {
         password: form.value.password,
-        uuid: route.params.uuid
+        resetToken: route.params.resetToken
     }).then((res) => {
         router.push("/login")
     }).catch((err) => {
