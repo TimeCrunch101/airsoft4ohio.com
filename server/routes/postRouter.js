@@ -11,6 +11,10 @@ const initPostRouter = (app) => {
     postRouter.post('/api/validate', auth.isAuthenticated, auth.validate)
     postRouter.post("/api/verify-mfa-enrollment", auth.isNotAuthenticated, auth.verifyMFA)
     postRouter.put("/api/create-post", auth.isAuthenticated, postController.createPost)
+    postRouter.post("/api/validate/mfa-enrollment", auth.isAuthenticated, auth.verifyMFA)
+    postRouter.patch("/api/enforce/mfa", auth.isAuthenticated, postController.enforceMFA)
+    postRouter.patch("/api/disable/mfa", auth.isAuthenticated, postController.disableMFA)
+    postRouter.delete("/api/purge-account", auth.isAuthenticated, postController.purgeAccount)
 
     return app.use('/', postRouter)
 }

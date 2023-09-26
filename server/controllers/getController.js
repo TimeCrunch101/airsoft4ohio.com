@@ -1,4 +1,5 @@
 const DB = require("./dbController")
+const mfa = require("./auth/mfaController")
 
 exports.getUser = async (req, res) => {
     console.log(req.user)
@@ -48,6 +49,21 @@ exports.getUsers = async (req, res) => {
         res.status(500).json({
             error: error.message,
             cause: error.cause
+        })
+    }
+}
+
+exports.enrollMFA = async (req, res) => {
+    try {
+        const mfaData = await mfa.enrollMFA(req.user.email)
+        await DB.sendSecretToDb(req.user.userID,mfaData.secret)
+        res.status(200).json({
+            secret: mfaData.secret,
+            qrcode: mfaData.qrcode
+        })
+    } catch (error) {
+        res.status(400).json({
+            error
         })
     }
 }
