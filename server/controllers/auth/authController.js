@@ -198,14 +198,25 @@ exports.passwordReset = (req, res) => {
 }
 
 exports.resetPassword = async (req, res) => {
-    const hash = bcrypt.hashSync(req.body.password, 10);
     try {
+        await DB.validateResetToken(req.body.uuid)
+        const hash = bcrypt.hashSync(req.body.password, 10);
         await utils.validatePassword(req.body.password)
-        if (req.body.newPass) { // FIXME: This is bad
-            await DB.newPassword(req.body.uuid, hash)
-        } else {
-            await DB.resetPassword(req.body.uuid, hash)
-        }
+        await DB.resetPassword(req.body.uuid, hash)
+        await DB.removeResetToken(req.body.uuid)
+        res.status(200).json({
+            message: 'Password reset successfully'
+        })
+    } catch (error) {
+        res.sendStatus(400)
+    }
+}
+
+exports.newPassword = async (req, res) => {
+    try {
+        const hash = bcrypt.hashSync(req.body.password, 10);
+        await utils.validatePassword(req.body.password)
+        await DB.newPassword(req.user.userID, hash)
         await DB.removeResetToken(req.body.uuid)
         res.status(200).json({
             message: 'Password reset successfully'
