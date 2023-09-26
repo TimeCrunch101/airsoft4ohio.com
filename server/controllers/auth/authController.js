@@ -180,7 +180,7 @@ exports.passwordReset = (req, res) => {
                 msgQueue.push({
                     to: data.email,
                     subject: 'Password Reset Request',
-                    body: ((process.env.NODE_ENV !== "production") ? `Here is your password reset link: http://localhost:5173/reset-password/${resetToken}` : `Here is your password reset link: https://airsoft4ohio.com/reset-password/${resetToken}`)
+                    body: ((process.env.NODE_ENV !== "production") ? `Here is your password reset link: http://localhost:5173/reset-password/${resetToken}` : `Here is your password reset link: https://a4o.cincitechlabs.com/reset-password/${resetToken}`)
                 })
             }
         }).catch((err) => {
