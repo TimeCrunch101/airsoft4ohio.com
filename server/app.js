@@ -28,8 +28,7 @@ if (Cluster.isPrimary) {
         }))
     } else {
         app.use(cors({
-            origin: "https://a4o-api-gate01.azure-api.net",
-            credentials: true
+            origin: "*",
         }))
     }
     
