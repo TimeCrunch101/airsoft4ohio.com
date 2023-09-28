@@ -8,7 +8,7 @@ const initGetRouter = (app) => {
     getRouter.get('/api/get/user-profile', auth.isAuthenticated, getController.getUser)
     getRouter.get("/api/get/posts", getController.getPosts)
     getRouter.get("/api/get/post/:postID", getController.getPost)
-    getRouter.get("/api/get/users", getController.getUsers)
+    getRouter.get("/api/get/users", auth.isAuthenticated, getController.getUsers)
     getRouter.get("/api/enroll-mfa", auth.isAuthenticated, getController.enrollMFA)
     
     return app.use('/', getRouter)
