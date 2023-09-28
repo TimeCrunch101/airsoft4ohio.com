@@ -26,6 +26,11 @@ if (Cluster.isPrimary) {
             origin: 'http://localhost:5173',
             credentials: true
         }))
+    } else {
+        app.use(cors({
+            origin: "https://a4o-api-gate01.azure-api.net",
+            credentials: true
+        }))
     }
     
     const apiLimiter = rateLimit({
