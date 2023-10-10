@@ -273,3 +273,36 @@ exports.logEmailStatus = (message) => {
         if (err) console.error(err)
     })
 }
+
+exports.createEvent = (eventData) => {
+    return new Promise((resolve, reject) => {
+        DB.query("INSERT INTO events SET ?", {
+            event_id: eventData.event_id,
+            title: eventData.title,
+            start: eventData.start,
+            end: eventData.end,
+            owner: eventData.owner
+        }, (err) => {
+            try {
+                if (err) throw new Error("Could not create event", {cause: err.message})
+                resolve(true)
+            } catch (error) {
+                reject(error)
+            }
+        })
+    })
+}
+
+exports.checkIfVendor = (userID) => {
+    return new Promise((resolve, reject) => {
+        DB.query("SELECT isVendor FROM dbt_users WHERE userID = ?", [userID], (err, data) => {
+            try {
+                if (err) throw new Error("Could not select if isVendor", {cause: err.message})
+                resolve(data)
+            } catch (error) {
+                console.error("DB ERROR: ",error)
+                reject(error)
+            }
+        })
+    })
+}

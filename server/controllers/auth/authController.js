@@ -77,7 +77,7 @@ exports.register = (req, res) => {
             message: "User Created"
         })
     }).catch((error) => {
-        console.log(error)
+        console.error(error)
         res.status(400).json({
             error: error
         })
@@ -98,13 +98,15 @@ exports.login = async (req, res) => {
                         userID: user.userID,
                         username: user.username,
                         email: user.email,
-                        enforceMFA: (user.mfa_enforced === 1) ? true : false
+                        enforceMFA: (user.mfa_enforced === 1) ? true : false,
+                        isVendor: (user.isVendor === 1) ? true : false
                     },null)
                     res.status(200).json({
                         success: true,
                         username: user.username,
                         email: user.email,
                         token: token,
+                        isVendor: user.isVendor
                     })
                 } else {
                     throw "Second Factor Failed"
@@ -129,7 +131,7 @@ exports.login = async (req, res) => {
                     userID: user.userID,
                     username: user.username,
                     email: user.email,
-                    enforceMFA: user.mfa_enforced
+                    enforceMFA: user.mfa_enforced,
                 },null)
                 res.status(200).json({
                     success: true,
@@ -222,6 +224,29 @@ exports.newPassword = async (req, res) => {
         })
     } catch (error) {
         res.status(400).json({
+            error
+        })
+    }
+}
+
+exports.isVendor = async (req, res, next) => {
+    try {
+        const isVendor = await DB.checkIfVendor(req.user.userID)
+        if (isVendor.length === 1) {
+            if (isVendor[0].isVendor) {
+                next()
+            } else {
+                return res.status(400).json({
+                    message: "You don't have permissions to create an event."
+                })
+            }
+        } else {
+            return res.status(400).json({
+                message: "You must have an account to create an event."
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
             error
         })
     }

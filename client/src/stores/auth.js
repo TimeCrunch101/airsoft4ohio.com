@@ -7,6 +7,7 @@ export const useAuthStore = defineStore("auth", {
     email: null,
     token: null,
     sasToken: null,
+    vendor: false,
   }),
   getters: {
     isAuthenticated: (store) => {
@@ -24,20 +25,25 @@ export const useAuthStore = defineStore("auth", {
     },
     getSasToken: (store) => {
       return store.sasToken
+    },
+    isVendor: (store) => {
+      return store.vendor
     }
   },
   actions: {
-    setUserInfo(username, email, token, sasToken) {
+    setUserInfo(username, email, token, sasToken, isVendor) {
       this.username = username
       this.email = email
       this.token = token
       this.sasToken = sasToken
+      this.vendor = isVendor
     },
     logoutUser() {     
       this.username = null
       this.email = null
       this.token = null
       this.sasToken = null
+      this.vendor = false
     },
     validate() {
       return new Promise((resolve, reject) => {
@@ -54,6 +60,7 @@ export const useAuthStore = defineStore("auth", {
             this.email = null
             this.token = null
             this.sasToken = null
+            this.vendor = false
             resolve(false)
           });
       })

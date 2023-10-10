@@ -14,9 +14,10 @@ const getPosts = () => {
     axios.get("/api/get/posts", {
     }).then((res) => {
         set.posts = res.data.posts
-        set.loading = false
     }).catch((err) => {
         alert('Could not fetch data')
+    }).finally(() => {
+        set.loading = false
     })
 }
 getPosts()

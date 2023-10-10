@@ -45,14 +45,13 @@ const login = () => {
       set.enrollMFA.qrcode = res.data.qrcode
       set.enrollMFA.status = true
     } else if (res.data.success) {
-      console.log(res.data)
-      auth.setUserInfo(res.data.username, res.data.email, res.data.token, null)
+      auth.setUserInfo(res.data.username, res.data.email, res.data.token, null, res.data.isVendor)
       router.push("/")
     } else {
       alert("Something expected happened, please refresh and try again.")
     }
   }).catch((err) => {
-    console.log(err.response.data)
+    console.error(err)
     alert("Unsuccessful login attempt, please try again.")
   }).finally(() => {
     set.loading = false

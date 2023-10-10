@@ -48,3 +48,18 @@ exports.purgeAccount = async (req, res) => {
         res.status(500).json({error})
     }
 }
+
+exports.createEvent = async (req, res) => {
+    try {
+        await DB.createEvent({
+            event_id: uuidv4(),
+            title: req.body.title,
+            start: req.body.start,
+            end: req.body.end,
+            owner: req.user.userID
+        })
+        res.sendStatus(201)
+    } catch (error) {
+        res.send(400).json(error)
+    }
+}

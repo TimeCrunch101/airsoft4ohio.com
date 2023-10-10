@@ -1,10 +1,9 @@
 const DB = require("./dbController")
 const mfa = require("./auth/mfaController")
 
+// TODO: Wrap in try catch
 exports.getUser = async (req, res) => {
-    console.log(req.user)
     const user = await DB.getUserByID(req.user.userID)
-    console.log(user)
     res.status(200).json({
         user
     })
