@@ -22,7 +22,7 @@
   "homepage": "https://github.com/TimeCrunch101/airsoft4ohio.com#readme",
   "devDependencies": {
     "dotenv": "^16.3.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.1.0"
   },
   "dependencies": {
     "@azure/storage-blob": "^12.15.0",
